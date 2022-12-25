@@ -37,7 +37,14 @@ const Authentication = ({ children }) => {
     }, [])
 
     const info = {
-
+        user,
+        loading,
+        setLoading,
+        createUser,
+        updateUser,
+        userSignIn,
+        userSignOut,
+        googleSignIn
     }
 
     return (

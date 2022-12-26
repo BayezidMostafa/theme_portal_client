@@ -1,14 +1,54 @@
 
 import styled from 'styled-components'
 
+
+export const LoginSection = styled.section`
+    display: flex;
+    min-height: 80vh;
+    justify-content: center;
+    align-items: center;
+`
+
+export const LoginForm = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 40vh;
+    background-color: #F2F2F2;
+    border-radius: 7px;
+    width: 20%;
+    padding: 25px;
+    margin: auto;
+    
+  @media ${(props) => props.theme.breakpoints.xl} {
+    width: 30vw;
+  }
+  @media ${(props) => props.theme.breakpoints.lg} {
+    width: 40vw;
+  }
+  @media ${(props) => props.theme.breakpoints.md} {
+    width: 60vw;
+  }
+  @media ${(props) => props.theme.breakpoints.sm} {
+    width: 98vw;
+  }
+`
+export const FormHeaderText = styled.p`
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: purple;
+  margin-bottom: 20px;
+`
+
 export const SectionContainer = styled.section`
 position: relative;
 `
 
 export const Section = styled.div`
-  display: ${(props) => props.grid ? "grid" : "flex" };
-  flex-direction: ${(props) => props.row ? "row" : "column" };
-  padding: ${(props) => props.nopadding ? "0" : "32px 48px 0" } ;
+  display: ${(props) => props.grid ? "grid" : "flex"};
+  flex-direction: ${(props) => props.row ? "row" : "column"};
+  padding: ${(props) => props.nopadding ? "0" : "32px 48px 0"} ;
   margin: 0 auto;
   min-height: 100%;
   max-width: 1040px;
@@ -24,7 +64,7 @@ export const Section = styled.div`
   }
 
   @media ${(props) => props.theme.breakpoints.sm} {
-    padding: ${(props) => props.nopadding ? "0" : "16px 16px 0" } ;
+    padding: ${(props) => props.nopadding ? "0" : "16px 16px 0"} ;
     width: calc(100vw - 32px);
     flex-direction: column;
   }
@@ -88,11 +128,11 @@ export const SectionDivider = styled.div`
   height: 6px;
   border-radius: 10px;
   background-color: #fff;
-  background: ${(props) => props.colorAlt ? 
+  background: ${(props) => props.colorAlt ?
     'linear-gradient(270deg, #F46737 0%, #945DD6 100%)' :
     'linear-gradient(270deg, #13ADC7 0%, #945DD6 100%)'};
 
-    margin: ${(props) => props.divider ? "4rem 0" : "" };
+    margin: ${(props) => props.divider ? "4rem 0" : ""};
 
   @media ${(props) => props.theme.breakpoints.md} {
     width: 48px;

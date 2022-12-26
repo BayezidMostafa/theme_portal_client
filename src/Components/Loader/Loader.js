@@ -6,8 +6,8 @@ const Loader = () => {
     return (
         <Box sx={{minHeight: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
             <Triangle
-                height="80"
-                width="80"
+                height="100"
+                width="100"
                 color="#4fa94d"
                 ariaLabel="triangle-loading"
                 wrapperStyle={{}}

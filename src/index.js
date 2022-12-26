@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from './Styles/global';
+import theme from '../src/theme/default'
+import Authentication from './Context/Authentication/Authentication';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Authentication>
+        <App />
+      </Authentication>
+    </ThemeProvider>
+
   </React.StrictMode>
 );
 

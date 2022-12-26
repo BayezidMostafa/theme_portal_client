@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Home = () => {
+const CTA = () => {
     return (
         <div>
-            
+            this is cta
         </div>
     );
 };
 
-export default Home;
+export default CTA;

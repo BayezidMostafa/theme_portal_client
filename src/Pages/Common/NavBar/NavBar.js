@@ -9,15 +9,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import logo from '../../../Assets/logo.png'
+import { AuthContext } from '../../../Context/Authentication/Authentication';
 
-const pages = ['Template', 'Developer', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function NavBar() {
+    const { 
+        user,
+        userSignOut
+     } = React.useContext(AuthContext)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -37,27 +38,16 @@ function NavBar() {
     };
 
     return (
-        <AppBar sx={{ width: { lg: 4 / 5 }, margin: 'auto', bgcolor: '#1b5e20', borderRadius: '5px' }} position="static">
+        <AppBar sx={{ width: { lg: 4 / 5 }, margin: 'auto', bgcolor: '#f2f2f2', borderRadius: '5px' }} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Typography
-                        variant="h3"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'arial',
-                            fontWeight: 900,
-                            letterSpacing: '',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        TP
-                    </Typography>
-
+                    <Avatar
+                        as={Link}
+                        to="/"
+                        src={logo}
+                        sx={{ display: { xs: 'none', md: 'block' } }}
+                    />
+                    {/* Mobile Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -65,10 +55,10 @@ function NavBar() {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
-                            color="inherit"
+                            color="black"
                         >
                             <MenuIcon />
-                        </IconButton>
+                        </IconButton >
                         <Menu
                             id="menu-appbar"
                             anchorEl={anchorElNav}
@@ -87,14 +77,24 @@ function NavBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
+                            <Button sx={{ color: 'green', display: 'block' }} as='a' href='#template'>
+                                Template
+                            </Button>
+                            <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/contactus">
+                                Contact Us
+                            </Button>
+                            <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/blog">
+                                Blog
+                            </Button>
+                            <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/suggestions">
+                                Suggestions
+                            </Button>
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <Avatar
+                        src={logo}
+                        sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
+                    />
                     <Typography
                         variant="h5"
                         noWrap
@@ -111,51 +111,56 @@ function NavBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Link sx={{textDecoration: 'none',}} >
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                >
-                                    {page}
-                                </Button>
-                            </Link>
-                        ))}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
+                        <Button sx={{ color: 'green' }} as='a' href='#template'>
+                            Template
+                        </Button>
+                        <Button sx={{ color: 'green' }} as={Link} to="/contuctus">
+                            Contact Us
+                        </Button>
+                        <Button sx={{ color: 'green' }} as={Link} to="/blog">
+                            Blog
+                        </Button>
+                        <Button sx={{ color: 'green' }} as={Link} to="/suggestions">
+                            Suggestions
+                        </Button>
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
+                    {
+                        user?.uid ?
+                            <>
+                                <Box sx={{ flexGrow: 0 }}>
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                    </IconButton>
+                                    <Menu
+                                        sx={{ mt: '45px' }}
+                                        id="menu-appbar"
+                                        anchorEl={anchorElUser}
+                                        anchorOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        open={Boolean(anchorElUser)}
+                                        onClose={handleCloseUserMenu}
+                                    >
+                                        <Button as={Link} to="/dashboard" >Dashboard</Button>
+                                        <Button onClick={userSignOut} >SignOut</Button>                                  
+                                    </Menu> 
+                                </Box>
+                            </>
+                            :
+                            <>
+                                <Button as={Link} to="/signin" >Sign In</Button>
+                            </>
+                    }
                 </Toolbar>
             </Container>
         </AppBar>

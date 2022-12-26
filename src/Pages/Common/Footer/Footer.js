@@ -1,10 +1,13 @@
 import React from 'react';
+import { FooterContainer, FooterText } from './FooterStyle';
 
 const Footer = () => {
     return (
-        <div>
-            <p>This is footer</p>
-        </div>
+        <FooterContainer>
+            <FooterText>
+                ©Copyright. All rights received by @Bayezid.
+            </FooterText>
+        </FooterContainer>
     );
 };
 

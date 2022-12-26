@@ -38,7 +38,7 @@ function NavBar() {
     };
 
     return (
-        <AppBar sx={{ width: { lg: 4 / 5 }, margin: 'auto', bgcolor: '#f2f2f2', borderRadius: '5px' }} position="static">
+        <AppBar sx={{ width: { lg: '75%', md: '100%' }, marginLeft: 'auto', marginRight: 'auto',  bgcolor: 'transparent', borderRadius: '5px',  }} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Avatar
@@ -86,7 +86,7 @@ function NavBar() {
                             <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/blog">
                                 Blog
                             </Button>
-                            <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/suggestions">
+                            <Button sx={{ color: '#2e7d32', fontWeight:'700', display: 'block' }} as={Link} to="/suggestions">
                                 Suggestions
                             </Button>
                         </Menu>
@@ -114,16 +114,16 @@ function NavBar() {
 
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
-                        <Button sx={{ color: 'green' }} as='a' href='#template'>
+                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as='a' href='#template'>
                             Template
                         </Button>
-                        <Button sx={{ color: 'green' }} as={Link} to="/contuctus">
+                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as={Link} to="/contuctus">
                             Contact Us
                         </Button>
-                        <Button sx={{ color: 'green' }} as={Link} to="/blog">
+                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as={Link} to="/blog">
                             Blog
                         </Button>
-                        <Button sx={{ color: 'green' }} as={Link} to="/suggestions">
+                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as={Link} to="/suggestions">
                             Suggestions
                         </Button>
                     </Box>
@@ -158,7 +158,7 @@ function NavBar() {
                             </>
                             :
                             <>
-                                <Button as={Link} to="/signin" >Sign In</Button>
+                                <Button color='success' as={Link} to="/signin" >Sign In</Button>
                             </>
                     }
                 </Toolbar>

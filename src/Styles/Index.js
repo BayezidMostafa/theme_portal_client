@@ -2,45 +2,26 @@
 import styled from 'styled-components'
 
 
-export const LoginSection = styled.section`
-    width: 75%;
-    margin: auto;
-    display: flex;
-    min-height: 80vh;
-    justify-content: center;
-    align-items: center;
+export const BodyBackground = styled.div`
+    background-image: linear-gradient(to bottom right, white, #cffad4);
+    min-height: 100vh;
+    background-size: cover;
+    border-radius: 10px;
 `
 
-export const LoginForm = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 40vh;
-    background-color: #F2F2F2;
-    border-radius: 7px;
-    width: 25%;
-    padding: 25px;
-    margin: auto;
-    
-  @media ${(props) => props.theme.breakpoints.xl} {
-    width: 30vw;
-  }
-  @media ${(props) => props.theme.breakpoints.lg} {
-    width: 40vw;
-  }
-  @media ${(props) => props.theme.breakpoints.md} {
-    width: 60vw;
-  }
-  @media ${(props) => props.theme.breakpoints.sm} {
-    width: 98vw;
-  }
-`
 export const FormHeaderText = styled.p`
   text-align: center;
   font-size: 3rem;
   font-weight: 700;
-  color: purple;
+  color: #2e7d32;
   margin-bottom: 20px;
+`
+
+export const FormFooterText = styled.p`
+  margin-top: 10px;
+  text-align: center;
+  font-size: small;
+  color: #2E7D32;
 `
 
 

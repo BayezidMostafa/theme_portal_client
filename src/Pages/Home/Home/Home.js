@@ -1,10 +1,12 @@
+import { Box } from '@mui/material';
 import React from 'react';
+import Banner from '../Banner/Banner';
 
 const Home = () => {
     return (
-        <div>
-            
-        </div>
+        <Box>
+            <Banner/>
+        </Box>
     );
 };
 

@@ -2,13 +2,14 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Footer from '../../Pages/Common/Footer/Footer';
 import NavBar from '../../Pages/Common/NavBar/NavBar';
+import { BodyBackground } from '../../Styles/Index';
 const Main = () => {
     return (
-        <div>
+        <BodyBackground>
             <NavBar/>
             <Outlet />
             <Footer/>
-        </div>
+        </BodyBackground>
     );
 };
 

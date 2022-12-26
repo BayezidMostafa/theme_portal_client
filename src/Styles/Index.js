@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 
 export const LoginSection = styled.section`
+    width: 75%;
+    margin: auto;
     display: flex;
     min-height: 80vh;
     justify-content: center;
@@ -16,7 +18,7 @@ export const LoginForm = styled.div`
     min-height: 40vh;
     background-color: #F2F2F2;
     border-radius: 7px;
-    width: 20%;
+    width: 25%;
     padding: 25px;
     margin: auto;
     
@@ -40,6 +42,7 @@ export const FormHeaderText = styled.p`
   color: purple;
   margin-bottom: 20px;
 `
+
 
 export const SectionContainer = styled.section`
 position: relative;

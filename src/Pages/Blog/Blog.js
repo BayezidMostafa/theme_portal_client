@@ -1,12 +1,14 @@
 import React from 'react';
-import { SectionText } from '../../Styles/Index';
+import { BlogContainer, BlogHeadingText } from './BlogStyles';
 
 const Blog = () => {
     return (
         <div>
-            <SectionText>
-                Coming soon...
-            </SectionText>
+            <BlogContainer>
+                <BlogHeadingText>
+                    Coming soon...
+                </BlogHeadingText>
+            </BlogContainer>
         </div>
     );
 };

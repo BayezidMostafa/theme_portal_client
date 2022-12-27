@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-export const Header = styled.h2`
-    text-align: center;
+export const BlogContainer = styled.section`
+    min-height: 78vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+export const BlogHeadingText  = styled.p`
     font-size: 5rem;
-    font-weight: 900;
-    color: ${props => props.white ? 'black' : 'white' };
-    margin: 0;
+    font-weight: lighter;
+    color: green;
 `

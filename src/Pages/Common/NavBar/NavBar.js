@@ -15,10 +15,10 @@ import { AuthContext } from '../../../Context/Authentication/Authentication';
 
 
 function NavBar() {
-    const { 
+    const {
         user,
         userSignOut
-     } = React.useContext(AuthContext)
+    } = React.useContext(AuthContext)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -38,7 +38,7 @@ function NavBar() {
     };
 
     return (
-        <AppBar sx={{ width: { lg: '75%', md: '100%' }, marginLeft: 'auto', marginRight: 'auto',  bgcolor: 'transparent', borderRadius: '5px',  }} position="static">
+        <AppBar sx={{ width: { lg: '75%', md: '100%' }, marginLeft: 'auto', marginRight: 'auto', bgcolor: 'transparent', borderRadius: '5px', }} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Avatar
@@ -86,12 +86,14 @@ function NavBar() {
                             <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/blog">
                                 Blog
                             </Button>
-                            <Button sx={{ color: '#2e7d32', fontWeight:'700', display: 'block' }} as={Link} to="/suggestions">
+                            <Button sx={{ color: '#2e7d32', fontWeight: '700', display: 'block' }} as={Link} to="/suggestions">
                                 Suggestions
                             </Button>
                         </Menu>
                     </Box>
                     <Avatar
+                        as={Link}
+                        to="/"
                         src={logo}
                         sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
                     />
@@ -114,16 +116,16 @@ function NavBar() {
 
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
-                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as='a' href='#template'>
+                        <Button sx={{ color: '#2e7d32', fontWeight: '700' }} as='a' href='#template'>
                             Template
                         </Button>
-                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as={Link} to="/contact">
+                        <Button sx={{ color: '#2e7d32', fontWeight: '700' }} as={Link} to="/contact">
                             Contact Us
                         </Button>
-                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as={Link} to="/blog">
+                        <Button sx={{ color: '#2e7d32', fontWeight: '700' }} as={Link} to="/blog">
                             Blog
                         </Button>
-                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as={Link} to="/suggestions">
+                        <Button sx={{ color: '#2e7d32', fontWeight: '700' }} as={Link} to="/suggestions">
                             Suggestions
                         </Button>
                     </Box>
@@ -151,9 +153,9 @@ function NavBar() {
                                         open={Boolean(anchorElUser)}
                                         onClose={handleCloseUserMenu}
                                     >
-                                        <Button sx={{display: 'block', color: 'green'}} as={Link} to="/dashboard" >Dashboard</Button>
-                                        <Button sx={{display: 'block', color: 'green'}} onClick={userSignOut} >SignOut</Button>        
-                                    </Menu> 
+                                        <Button sx={{ display: 'block', color: 'green' }} as={Link} to="/dashboard" >Dashboard</Button>
+                                        <Button sx={{ display: 'block', color: 'green' }} onClick={userSignOut} >SignOut</Button>
+                                    </Menu>
                                 </Box>
                             </>
                             :

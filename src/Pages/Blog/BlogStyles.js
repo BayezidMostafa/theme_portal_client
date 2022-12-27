@@ -10,4 +10,10 @@ export const BlogHeadingText  = styled.p`
     font-size: 5rem;
     font-weight: lighter;
     color: green;
+    @media ${(props) => props.theme.breakpoints.md} {
+        font-size: 3rem;
+    }
+    @media ${(props) => props.theme.breakpoints.sm} {
+        font-size: 2rem;
+    }
 `

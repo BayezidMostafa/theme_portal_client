@@ -80,7 +80,7 @@ function NavBar() {
                             <Button sx={{ color: 'green', display: 'block' }} as='a' href='#template'>
                                 Template
                             </Button>
-                            <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/contactus">
+                            <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/contact">
                                 Contact Us
                             </Button>
                             <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/blog">
@@ -117,7 +117,7 @@ function NavBar() {
                         <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as='a' href='#template'>
                             Template
                         </Button>
-                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as={Link} to="/contuctus">
+                        <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as={Link} to="/contact">
                             Contact Us
                         </Button>
                         <Button sx={{ color: '#2e7d32', fontWeight:'700' }} as={Link} to="/blog">

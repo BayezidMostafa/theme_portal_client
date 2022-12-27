@@ -7,6 +7,7 @@ export const BannerSection = styled.div`
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 10px;

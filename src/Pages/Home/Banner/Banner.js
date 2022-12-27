@@ -8,10 +8,10 @@ const Banner = () => {
         <div>
             <BannerSection>
                 <BannerHeaderText>Hello there!
-                    <BannerSectionText>Find thousands of easily customizable themes, templates, <br /> and whole websites created by top developers.
-                    </BannerSectionText>
-                    <Button as="a" size='large' href='#' color="success" variant="outlined" >Explore Now</Button>
                 </BannerHeaderText>
+                <BannerSectionText>Find thousands of easily customizable themes, templates, <br /> and whole websites created by top developers.
+                </BannerSectionText>
+                <Button sx={{marginTop: '20px'}} as="a" size='large' href='#' color="success" variant="outlined" >Explore Now</Button>
             </BannerSection>
         </div>
     );

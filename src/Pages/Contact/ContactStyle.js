@@ -7,13 +7,37 @@ export const ContactSection = styled.div`
     min-height: 70vh;
     justify-content: space-between;
     align-items: center;
+    @media ${(props) => props.theme.breakpoints.md} {
+        display: block;
+        width: 90%;
+        margin: 20px auto;
+    }
+    @media ${(props) => props.theme.breakpoints.sm} {
+        display: block;
+        width: 100%;
+    }
 `
 export const ContactBannerPanel = styled.div`
     width: 50%;
+    @media ${(props) => props.theme.breakpoints.md} {
+        width: 90%;
+        margin: 20px auto;
+    }
+    @media ${(props) => props.theme.breakpoints.sm} {
+        width: 100%;
+    }
 `
 export const StyledContactForm = styled.div`
-margin: auto;
+    margin: auto;
     width: 40%;
+    @media ${(props) => props.theme.breakpoints.md} {
+        width: 90%;
+        margin: 20px auto;
+    }
+    @media ${(props) => props.theme.breakpoints.sm} {
+        width: 95%;
+        margin: auto;
+    }
   form {
     display: flex;
     align-items: flex-start;

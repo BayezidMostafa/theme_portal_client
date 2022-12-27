@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { ContactBannerPanel, ContactSection, StyledContactForm } from './ContactStyle';
 import emailjs from "@emailjs/browser";
 import { contactBanner } from '../../Assets';
+import { toast } from 'react-hot-toast';
 
 const Contact = () => {
 
@@ -21,6 +22,7 @@ const Contact = () => {
                 (result) => {
                     console.log(result.text);
                     console.log("message sent");
+                    toast.success('Mail Send Successfully')
                 },
                 (error) => {
                     console.log(error.text);

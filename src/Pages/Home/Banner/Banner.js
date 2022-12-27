@@ -11,7 +11,7 @@ const Banner = () => {
                 </BannerHeaderText>
                 <BannerSectionText>Find thousands of easily customizable themes, templates, <br /> and whole websites created by top developers.
                 </BannerSectionText>
-                <Button sx={{marginTop: '20px'}} as="a" size='large' href='#' color="success" variant="outlined" >Explore Now</Button>
+                <Button sx={{marginTop: '20px'}} as="a" size='large' href='#' color="info" variant="outlined" >Explore Now</Button>
             </BannerSection>
         </div>
     );

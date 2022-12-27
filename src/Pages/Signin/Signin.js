@@ -7,12 +7,24 @@ import { AuthContext } from '../../Context/Authentication/Authentication';
 import { LoginForm, LoginSection } from './SigninStyle';
 import { signInLogo } from '../../Assets';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const Signin = () => {
-    const { googleSignIn, githubSignIn } = useContext(AuthContext);
+    const { userSignIn, googleSignIn, githubSignIn } = useContext(AuthContext);
 
     const handleOnSubmit = event => {
         event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        userSignIn(email, password)
+        .then(result => {
+            const user = result.user;
+            toast.success('Successfully Logged In')
+        })
+        .catch(err => {
+            console.error(err.message);
+        })
     }
 
     return (
@@ -24,7 +36,7 @@ const Signin = () => {
                 <form onSubmit={handleOnSubmit} >
                     <FormHeaderText>Sign In</FormHeaderText>
                     <TextField size='small' name='email' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Email" variant="outlined" />
-                    <TextField size='small' name='password' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Password" variant="outlined" />
+                    <TextField size='small' name='password' type='password' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Password" variant="outlined" />
                     <Button sx={{ display: 'block', marginTop: '10px' }} fullWidth color='success' variant='contained' type='submit'>SignIn</Button>
                 </form>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '.5rem' }}>

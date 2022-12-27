@@ -6,12 +6,20 @@ export const FeaturesCardContainer = styled.section`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-
+    @media ${(props) => props.theme.breakpoints.lg} {
+        grid-template-columns: repeat(2, 1fr);
+        width: 75%;
+        margin: 20px auto;
+    }
+    @media ${(props) => props.theme.breakpoints.sm} {
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+    }
 `
 export const FeaturesCard = styled.div`
     padding: 1rem;
     text-align: center;
-    background-color: #e0ffe3;
+    background-color: #fdfdfd;
     border-radius: 5px;
     min-height: 20vh;
     display: flex;

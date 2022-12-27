@@ -1,4 +1,4 @@
-import { Box, Button, InputLabel, MenuItem, NativeSelect, Select, TextField, Typography } from '@mui/material';
+import { Box, Button, NativeSelect, TextField } from '@mui/material';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/Authentication/Authentication';
 import { FormFooterText, FormHeaderText } from '../../Styles/Index';
@@ -7,13 +7,57 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link } from 'react-router-dom';
 import { LoginForm, LoginSection } from '../Signin/SigninStyle';
 import { signup } from '../../Assets';
+import { PhotoCamera } from '@mui/icons-material';
+import { ImageInputSignUp } from './SignUpStyle';
+import { toast } from 'react-hot-toast';
 
 const Signup = () => {
 
-    const { googleSignIn, githubSignIn } = useContext(AuthContext);
+    const { googleSignIn, githubSignIn, createUser, updateUser } = useContext(AuthContext);
 
     const handleOnSubmit = event => {
         event.preventDefault()
+        const form = event.target;
+        const name = form.name.value;
+        const role = form.role.value;
+        const image = form.image.files[0];
+        const email = form.email.value;
+        const password = form.password.value;
+        const formData = new FormData()
+        formData.append('image', image)
+
+        const userInfo = {
+            name, 
+            email,
+            role
+        }
+
+        fetch(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgbbkey}`, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(res => res.json())
+        .then(data => {
+            const image = data.data.display_url;
+            createUser(email, password)
+            .then(result => {
+                const profile = {
+                    displayName: name,
+                    photoURL: image
+                }
+                updateUser(profile)
+                .then(() => {
+                    toast.success('Welcome to Theme Portal')
+                })
+                .catch(err => {
+                    console.error(err.message);
+                })
+            })
+            .catch(err => {
+                console.error(err.message);
+            })
+        })
+
     }
 
     return (
@@ -24,15 +68,17 @@ const Signup = () => {
             <LoginForm>
                 <form onSubmit={handleOnSubmit} >
                     <FormHeaderText>Sign Up</FormHeaderText>
-                    <TextField size='small' name='name' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Name" variant="outlined" />
+                    <TextField size='small' type='name' name='name' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Name" variant="outlined" />
                     <NativeSelect sx={{marginY: '10px'}} variant='contained' fullWidth color='success' name='role' >
                         <option value="client">Client</option>
                         <option value="developer">Developer</option>
                     </NativeSelect>
-
+                    <ImageInputSignUp>
+                        <input name='image' required type="file" />
+                        <PhotoCamera color='success' />
+                    </ImageInputSignUp>
                     <TextField size='small' name='email' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Email" variant="outlined" />
-                    <TextField size='small' name='email' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Email" variant="outlined" />
-                    <TextField size='small' name='password' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Password" variant="outlined" />
+                    <TextField size='small' name='password' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" type='password' label="Password" variant="outlined" />
                     <Button sx={{ display: 'block', marginTop: '10px' }} fullWidth color='success' variant='contained' type='submit'>SignIn</Button>
                 </form>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '.5rem' }}>

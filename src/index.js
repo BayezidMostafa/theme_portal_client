@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './Styles/global';
 import theme from '../src/theme/default'
 import Authentication from './Context/Authentication/Authentication';
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,7 @@ root.render(
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Authentication>
+        <Toaster position='top-center' />
         <App />
       </Authentication>
     </ThemeProvider>

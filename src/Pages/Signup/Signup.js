@@ -1,7 +1,7 @@
-import { Box, Button, NativeSelect, TextField } from '@mui/material';
+import { Box, NativeSelect, TextField } from '@mui/material';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/Authentication/Authentication';
-import { FormFooterText, FormHeaderText } from '../../Styles/Index';
+import { FormFooterText, FormHeaderText, SecondaryBtn } from '../../Styles/Index';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { signup } from '../../Assets';
 import { PhotoCamera } from '@mui/icons-material';
 import { ImageInputSignUp } from './SignUpStyle';
 import { toast } from 'react-hot-toast';
+import Button from '../../Components/Button/Button';
 
 const Signup = () => {
 
@@ -79,11 +80,11 @@ const Signup = () => {
                     </ImageInputSignUp>
                     <TextField size='small' name='email' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Email" variant="outlined" />
                     <TextField size='small' name='password' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" type='password' label="Password" variant="outlined" />
-                    <Button sx={{ display: 'block', marginTop: '10px' }} fullWidth color='success' variant='contained' type='submit'>SignIn</Button>
+                    <Button type="submit" >Sign Up</Button>
                 </form>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '.5rem' }}>
-                    <Button onClick={googleSignIn} fullWidth color='success' variant='outlined' sx={{ marginTop: '10px', fontSize: '1.2rem' }} ><GoogleIcon sx={{ color: '#2467ed' }} /></Button>
-                    <Button onClick={githubSignIn} fullWidth color='success' variant='outlined' sx={{ marginTop: '10px', fontSize: '1.2rem' }} ><GitHubIcon sx={{ color: 'black' }} /></Button>
+                    <SecondaryBtn onClick={googleSignIn} ><GoogleIcon sx={{ color: '#2467ed' }} /></SecondaryBtn>
+                    <SecondaryBtn onClick={githubSignIn} ><GitHubIcon sx={{ color: 'black' }} /></SecondaryBtn>
                 </Box>
                 <FormFooterText>
                     Already have an account <Link to='/signin' style={{ color: '#2E7D32', textDecoration: 'underline' }} >Sign In</Link>

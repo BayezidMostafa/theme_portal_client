@@ -77,16 +77,16 @@ function NavBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            <Button sx={{ color: 'green', display: 'block' }} as='a' href='#template'>
+                            <Button sx={{ color: '#416259', display: 'block' }} as='a' href='#template'>
                                 Template
                             </Button>
-                            <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/contact">
+                            <Button sx={{ color: '#416259', display: 'block' }} as={Link} to="/contact">
                                 Contact Us
                             </Button>
-                            <Button sx={{ color: 'green', display: 'block' }} as={Link} to="/blog">
+                            <Button sx={{ color: '#416259', display: 'block' }} as={Link} to="/blog">
                                 Blog
                             </Button>
-                            <Button sx={{ color: '#2e7d32', fontWeight: '700', display: 'block' }} as={Link} to="/suggestions">
+                            <Button sx={{ color: '#416259', fontWeight: '700', display: 'block' }} as={Link} to="/suggestions">
                                 Suggestions
                             </Button>
                         </Menu>
@@ -116,16 +116,16 @@ function NavBar() {
 
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
-                        <Button sx={{ color: '#2e7d32', fontWeight: '700' }} as='a' href='#template'>
+                        <Button sx={{ color: '#416259', fontWeight: '700' }} as='a' href='#template'>
                             Template
                         </Button>
-                        <Button sx={{ color: '#2e7d32', fontWeight: '700' }} as={Link} to="/contact">
+                        <Button sx={{ color: '#416259', fontWeight: '700' }} as={Link} to="/contact">
                             Contact Us
                         </Button>
-                        <Button sx={{ color: '#2e7d32', fontWeight: '700' }} as={Link} to="/blog">
+                        <Button sx={{ color: '#416259', fontWeight: '700' }} as={Link} to="/blog">
                             Blog
                         </Button>
-                        <Button sx={{ color: '#2e7d32', fontWeight: '700' }} as={Link} to="/suggestions">
+                        <Button sx={{ color: '#416259', fontWeight: '700' }} as={Link} to="/suggestions">
                             Suggestions
                         </Button>
                     </Box>

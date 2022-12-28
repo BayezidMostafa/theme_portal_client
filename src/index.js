@@ -16,6 +16,7 @@ root.render(
       <GlobalStyles />
       <Authentication>
         <Toaster position='top-center' />
+        
         <App />
       </Authentication>
     </ThemeProvider>

@@ -19,16 +19,16 @@ export const FeaturesCardContainer = styled.section`
 export const FeaturesCard = styled.div`
     padding: 1rem;
     text-align: center;
-    background-color: #fdfdfd;
     border-radius: 5px;
+    border: 2px solid #F5F5F5;
     min-height: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition-property: all;
+    transition-duration: 300ms;
     &:hover{
-        box-shadow: 0 0 5px #c5e3c9;
+        box-shadow: 0 0 5px #E8E8E8;
     }
 `
 export const FeatureCardTitle = styled.p`

@@ -28,7 +28,8 @@ export const BannerSection = styled.div`
 export const BannerHeaderText = styled.p`
     font-size: 6rem;
     font-weight: 500;
-    color: #dcf7e3;
+    color: white;
+    text-shadow: 0 0 5px black;
     text-align: center;
     @media ${(props) => props.theme.breakpoints.md} {
     font-size: 4rem;
@@ -38,6 +39,30 @@ export const BannerHeaderText = styled.p`
     font-size: 2rem;
     }
 `
+export const BannerButton = styled.div`
+  margin: 10px 0;
+  padding: 15px 0;
+  border-radius: 5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  cursor: pointer;
+  transition: 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: ${({ disabled }) => disabled ? '.5' : '1'};
+
+  @media ${(props) => props.theme.breakpoints.md} {
+
+  }
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    font-size: 14px;
+  }
+`
+
 export const BannerSectionText = styled.p`
     font-size: 1.2rem;
     color: white;

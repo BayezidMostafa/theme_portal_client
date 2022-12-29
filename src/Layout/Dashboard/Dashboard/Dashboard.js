@@ -7,9 +7,6 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -17,7 +14,6 @@ import Button from '@mui/material/Button';
 import { Outlet } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
 
 function Dashboard(props) {
   const { window } = props;
@@ -34,13 +30,7 @@ function Dashboard(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <Button>Admin</Button>
       </List>
     </Box>
   );
@@ -50,7 +40,7 @@ function Dashboard(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar color='transparent' component="nav">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -69,11 +59,7 @@ function Dashboard(props) {
             Theme Portal
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
-              </Button>
-            ))}
+            <Button>Admin</Button>
           </Box>
         </Toolbar>
       </AppBar>
@@ -94,7 +80,7 @@ function Dashboard(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
+      <Box component="main" sx={{ p: 3, width: '100%        ' }}>
         <Toolbar />
         <Typography
         variant='h3' 

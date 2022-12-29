@@ -8,19 +8,22 @@ import GlobalStyles from './Styles/global';
 import theme from '../src/theme/default'
 import Authentication from './Context/Authentication/Authentication';
 import { Toaster } from 'react-hot-toast';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Authentication>
-        <Toaster position='top-center' />
-        
-        <App />
-      </Authentication>
-    </ThemeProvider>
-
+    <QueryClientProvider client={queryClient} >
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Authentication>
+          <Toaster position='top-center' />
+          <App />
+        </Authentication>
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

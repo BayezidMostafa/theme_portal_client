@@ -75,11 +75,11 @@ export const StyledContactForm = styled.div`
     input[type="submit"] {
       margin-top: 2rem;
       cursor: pointer;
-      background: #409E45;
+      background: #53736a;
       color: white;
       border: none;
       &:hover{
-        background-color: #37993c;
+        background-color: #416259;
       }
     }
   }

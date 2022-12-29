@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import { ShowCaseCardSection } from './ShowCaseCardStyle';
 
 const ShowCaseCard = ({theme}) => {
-    const {thumb} = theme;
+    const {thumb, _id} = theme;
     return (
         <ShowCaseCardSection>
             <img src={thumb} alt="" />
             <div>
-                <Button as={Link} to="/" >Explore</Button>
+                <Button variant='contained' color='success' as={Link} to={`/themes/${_id}`} >Explore</Button>
             </div>
         </ShowCaseCardSection>
     );

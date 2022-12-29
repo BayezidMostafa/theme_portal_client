@@ -1,8 +1,7 @@
-import { Box } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { DotLoader } from 'react-spinners';
+import { SyncLoader } from 'react-spinners';
 import Button from '../../../Components/Button/Button';
 import ShowCaseCard from './ShowCaseCard';
 import { ShowCaseData, ShowCaseHeader, ShowCaseSection } from './ThemeShowCaseStyle';
@@ -37,21 +36,27 @@ const ThemeShowCase = () => {
 
     return (
         <>
-            {
-                isLoading ? <><p>Hello</p></> :
-                    <ShowCaseSection>
-                        <ShowCaseHeader>
-                            Our Template is Just Ready to Use!
-                        </ShowCaseHeader>
-                        <ShowCaseData>
-                            {
-                                themes.map(theme => <ShowCaseCard key={theme._id} theme={theme} />)
-                            }
-                        </ShowCaseData>
+            <ShowCaseSection>
+                <ShowCaseHeader>
+                    Our Template is Just Ready to Use!
+                </ShowCaseHeader>
+                {
+                    isLoading ?
+                        <>
+                            <SyncLoader color="#36d7b7" />
+                        </>
+                        :
+                        <>
+                            <ShowCaseData>
+                                {
+                                    themes.map(theme => <ShowCaseCard key={theme._id} theme={theme} />)
+                                }
+                            </ShowCaseData>
+                        </>
+                }
+                <Button style={{width: '20%'}} onClick={sizeIncreaser}>Load More</Button>
+            </ShowCaseSection>
 
-                        <Button onClick={sizeIncreaser}>Load More</Button>
-                    </ShowCaseSection>
-            }
         </>
     );
 };

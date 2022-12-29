@@ -6,40 +6,43 @@ import Contact from "../../Pages/Contact/Contact";
 import Home from "../../Pages/Home/Home/Home";
 import Signin from "../../Pages/Signin/Signin";
 import Signup from "../../Pages/Signup/Signup";
+import ThemeDetails from "../../Pages/ThemeDetails/ThemeDetails";
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Main/>,
+        element: <Main />,
         children: [
             {
                 path: '/',
-                element: <Home/>
+                element: <Home />
             },
             {
                 path: '/blog',
-                element: <Blog/>
+                element: <Blog />
             },
             {
                 path: '/signin',
-                element: <Signin/>
+                element: <Signin />
             },
             {
                 path: '/signup',
-                element: <Signup/>
+                element: <Signup />
             },
             {
                 path: '/contact',
-                element: <Contact/>
+                element: <Contact />
             },
             {
-                path: '/',
-                element: <></>
+                path: '/themes/:id',
+                element: <ThemeDetails />,
+                loader: ({ params }) => fetch(`http://localhost:5000/themes/${params.id}`)
+
             },
         ]
     },
     {
         path: '/dashboard',
-        element: <Dashboard/>
+        element: <Dashboard />
     }
 ])

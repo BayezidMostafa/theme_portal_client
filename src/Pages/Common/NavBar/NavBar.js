@@ -77,9 +77,6 @@ function NavBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            <Button sx={{ color: '#416259', display: 'block' }} as='a' href='#template'>
-                                Template
-                            </Button>
                             <Button sx={{ color: '#416259', display: 'block' }} as={Link} to="/contact">
                                 Contact Us
                             </Button>
@@ -116,9 +113,6 @@ function NavBar() {
 
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
-                        <Button sx={{ color: '#416259', fontWeight: '700' }} as='a' href='#template'>
-                            Template
-                        </Button>
                         <Button sx={{ color: '#416259', fontWeight: '700' }} as={Link} to="/contact">
                             Contact Us
                         </Button>

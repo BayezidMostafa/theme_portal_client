@@ -6,12 +6,17 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import { AuthContext } from '../../Context/Authentication/Authentication';
 import { LoginForm, LoginSection } from './SigninStyle';
 import { signInLogo } from '../../Assets';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import Button from '../../Components/Button/Button';
+import axios from 'axios';
+import { authToken } from '../../Authorization/authToken';
 
 const Signin = () => {
     const { userSignIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/';
 
     const handleOnSubmit = event => {
         event.preventDefault();
@@ -20,11 +25,38 @@ const Signin = () => {
         const password = form.password.value;
         userSignIn(email, password)
             .then(result => {
-                const user = result.user;
+                authToken(result?.user)
+                const user = result?.user;
                 toast.success('Successfully Logged In')
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.error(err.message);
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user;
+                const userInfo = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    role: 'client'
+                }
+                axios.put('http://localhost:5000/users', userInfo, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('theme-token')}`
+                    }
+                })
+                    .then(result => {
+                        authToken(userInfo)
+                        navigate(from, { replace: true });
+                        toast.success('Welcome to Theme Portal')
+                    })
+                    .catch(err => {
+                        console.error(err.message);
+                    })
             })
     }
 
@@ -41,7 +73,7 @@ const Signin = () => {
                     <Button type="submit" >SIGN IN</Button>
                 </form>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '.5rem' }}>
-                    <SecondaryBtn onClick={googleSignIn}><GoogleIcon sx={{ color: '#2467ed' }} /></SecondaryBtn>
+                    <SecondaryBtn onClick={handleGoogleSignIn}><GoogleIcon sx={{ color: '#2467ed' }} /></SecondaryBtn>
                     <SecondaryBtn onClick={githubSignIn}><GitHubIcon sx={{ color: 'black' }} /></SecondaryBtn>
                 </Box>
                 <FormFooterText>

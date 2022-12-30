@@ -4,17 +4,22 @@ import { AuthContext } from '../../Context/Authentication/Authentication';
 import { FormFooterText, FormHeaderText, SecondaryBtn } from '../../Styles/Index';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LoginForm, LoginSection } from '../Signin/SigninStyle';
 import { signup } from '../../Assets';
 import { PhotoCamera } from '@mui/icons-material';
 import { ImageInputSignUp } from './SignUpStyle';
 import { toast } from 'react-hot-toast';
 import Button from '../../Components/Button/Button';
+import axios from 'axios';
+import { authToken } from '../../Authorization/authToken';
 
 const Signup = () => {
-
     const { googleSignIn, githubSignIn, createUser, updateUser } = useContext(AuthContext);
+
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/';
 
     const handleOnSubmit = event => {
         event.preventDefault()
@@ -28,7 +33,7 @@ const Signup = () => {
         formData.append('image', image)
 
         const userInfo = {
-            name, 
+            name,
             email,
             role
         }
@@ -37,28 +42,91 @@ const Signup = () => {
             method: 'POST',
             body: formData,
         })
-        .then(res => res.json())
-        .then(data => {
-            const image = data.data.display_url;
-            createUser(email, password)
-            .then(result => {
-                const profile = {
-                    displayName: name,
-                    photoURL: image
-                }
-                updateUser(profile)
-                .then(() => {
-                    toast.success('Welcome to Theme Portal')
-                })
-                .catch(err => {
-                    console.error(err.message);
-                })
-            })
-            .catch(err => {
-                console.error(err.message);
-            })
-        })
+            .then(res => res.json())
+            .then(data => {
+                const image = data.data.display_url;
+                createUser(email, password)
+                    .then(result => {
+                        const profile = {
+                            displayName: name,
+                            photoURL: image
+                        }
+                        updateUser(profile)
+                            .then(() => {
 
+                            })
+                            .catch(err => {
+                                console.error(err.message);
+                            })
+                        axios.put('http://localhost:5000/users', userInfo, {
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('theme-token')}`
+                            }
+                        })
+                            .then(result => {
+                                authToken(userInfo)
+                                navigate(from, { replace: true });
+                                toast.success('Welcome to Theme Portal')
+                            })
+                            .catch(err => {
+                                console.error(err.message);
+                            })
+                    })
+                    .catch(err => {
+                        console.error(err.message);
+                    })
+            })
+
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user;
+                const userInfo = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    role: 'client'
+                }
+                axios.put('http://localhost:5000/users', userInfo, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('theme-token')}`
+                    }
+                })
+                    .then(result => {
+                        authToken(userInfo)
+                        navigate(from, { replace: true });
+                        toast.success('Welcome to Theme Portal')
+                    })
+                    .catch(err => {
+                        console.error(err.message);
+                    })
+            })
+    }
+    const handleGitHubSignIn = () => {
+        githubSignIn()
+            .then(result => {
+                const user = result.user;
+                const userInfo = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    role: 'client'
+                }
+                console.log(user);
+                axios.put('http://localhost:5000/users', userInfo, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('theme-token')}`
+                    }
+                })
+                    .then(result => {
+                        authToken(userInfo)
+                        navigate(from, { replace: true });
+                        toast.success('Welcome to Theme Portal')
+                    })
+                    .catch(err => {
+                        console.error(err.message);
+                    })
+            })
     }
 
     return (
@@ -69,8 +137,8 @@ const Signup = () => {
             <LoginForm>
                 <form onSubmit={handleOnSubmit} >
                     <FormHeaderText>Sign Up</FormHeaderText>
-                    <TextField size='small' type='name' name='name' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Name" variant="outlined" />
-                    <NativeSelect sx={{marginY: '10px'}} variant='contained' fullWidth color='success' name='role' >
+                    <TextField size='small' type='text' name='name' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Name" variant="outlined" />
+                    <NativeSelect sx={{ marginY: '10px' }} variant='contained' fullWidth color='success' name='role' >
                         <option value="client">Client</option>
                         <option value="developer">Developer</option>
                     </NativeSelect>
@@ -83,8 +151,8 @@ const Signup = () => {
                     <Button type="submit" >Sign Up</Button>
                 </form>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '.5rem' }}>
-                    <SecondaryBtn onClick={googleSignIn} ><GoogleIcon sx={{ color: '#2467ed' }} /></SecondaryBtn>
-                    <SecondaryBtn onClick={githubSignIn} ><GitHubIcon sx={{ color: 'black' }} /></SecondaryBtn>
+                    <SecondaryBtn onClick={handleGoogleSignIn} ><GoogleIcon sx={{ color: '#2467ed' }} /></SecondaryBtn>
+                    <SecondaryBtn onClick={handleGitHubSignIn} ><GitHubIcon sx={{ color: 'black' }} /></SecondaryBtn>
                 </Box>
                 <FormFooterText>
                     Already have an account <Link to='/signin' style={{ color: '#2E7D32', textDecoration: 'underline' }} >Sign In</Link>

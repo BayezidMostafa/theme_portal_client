@@ -8,32 +8,40 @@ export const AuthContext = createContext();
 const Authentication = ({ children }) => {
 
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const googleAuth = new GoogleAuthProvider()
     const githubAuth = new GithubAuthProvider()
 
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }
     const updateUser = (profile) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, profile)
     }
     const userSignIn = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
     const userSignOut = () => {
+        setLoading(true)
+        localStorage.removeItem('theme-token')
         return signOut(auth);
     }
     const googleSignIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleAuth);
     }
     const githubSignIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, githubAuth)
     }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            setLoading(false)
         })
         return () => {
             unsubscribe();

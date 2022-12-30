@@ -6,7 +6,9 @@ import Contact from "../../Pages/Contact/Contact";
 import Home from "../../Pages/Home/Home/Home";
 import Signin from "../../Pages/Signin/Signin";
 import Signup from "../../Pages/Signup/Signup";
+import Suggestions from "../../Pages/Suggestion/Suggestions";
 import ThemeDetails from "../../Pages/ThemeDetails/ThemeDetails";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -34,8 +36,12 @@ export const router = createBrowserRouter([
                 element: <Contact />
             },
             {
+                path: '/suggestions',
+                element: <Suggestions />
+            },
+            {
                 path: '/themes/:id',
-                element: <ThemeDetails />,
+                element: <PrivateRoute><ThemeDetails /></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/themes/${params.id}`)
 
             },

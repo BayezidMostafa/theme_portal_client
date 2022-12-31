@@ -25,8 +25,8 @@ const Signin = () => {
         const password = form.password.value;
         userSignIn(email, password)
             .then(result => {
-                authToken(result?.user)
                 const user = result?.user;
+                authToken(user)
                 toast.success('Successfully Logged In')
                 navigate(from, { replace: true });
             })

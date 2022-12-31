@@ -10,12 +10,33 @@ import List from '@mui/material/List';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import { ButtonContainer, ButtonContainerSideBar, ButtonMain, ButtonMainSideBar, LinkContainer } from './DashboardStyles';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { AuthContext } from '../../../Context/Authentication/Authentication';
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
+
+  const { user } = React.useContext(AuthContext);
+  console.log(user);
+
+  const { data: userData = [], isLoading } = useQuery({
+    queryKey: ['user'],
+    queryFn: async () => {
+      const res = await axios.get(`http://localhost:5000/users/${user?.email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('theme-token')}`
+        }
+      });
+      return res.data
+    }
+  })
+
+  console.log(userData);
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -30,7 +51,84 @@ function Dashboard(props) {
       </Typography>
       <Divider />
       <List>
-        <Button>Admin</Button>
+        <ButtonContainerSideBar>
+          <ButtonMainSideBar>
+            Home
+          </ButtonMainSideBar>
+        </ButtonContainerSideBar>
+        {
+          userData?.role === 'admin' ?
+            <>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  All Developers
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  All Client
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  Reported items
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  Verify Request
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+            </>
+            :
+            <>
+
+            </>
+        }
+        {
+          userData?.role === 'developer' ?
+            <>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  My Templates
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  Add Template
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  Request Verification
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+            </>
+            :
+            <></>
+        }
+        {
+          userData?.role === 'client' ?
+            <>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  My Orders
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  Wish List
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+              <ButtonContainerSideBar>
+                <ButtonMainSideBar>
+                  My Purchase
+                </ButtonMainSideBar>
+              </ButtonContainerSideBar>
+            </>
+            :
+            <></>
+        }
       </List>
     </Box>
   );
@@ -58,8 +156,45 @@ function Dashboard(props) {
           >
             Theme Portal
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            <Button>Admin</Button>
+          <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+            <LinkContainer>
+              <Link to='/' >Home</Link>
+            </LinkContainer>
+            {
+              userData?.role === 'admin' ?
+                <>
+                  <LinkContainer>
+                    <Link>All Developers</Link>
+                    <Link>All Clients</Link>
+                    <Link>Reported Items</Link>
+                    <Link>Verify Request</Link>
+                  </LinkContainer>
+                </>
+                :
+                <></>
+            }
+            {
+              userData?.role === 'developer' ?
+                <>
+                  <LinkContainer>
+                    <Link>My Templates</Link>
+                    <Link>Add Template</Link>
+                    <Link>Request Verification</Link>
+                  </LinkContainer>
+                </> : <></>
+            }
+            {
+              userData?.role === 'client' ?
+                <>
+                  <LinkContainer>
+                    <Link>My Order</Link>
+                    <Link>Wish List</Link>
+                    <Link>My Purchase</Link>
+                  </LinkContainer>
+                </>
+                :
+                <></>
+            }
           </Box>
         </Toolbar>
       </AppBar>
@@ -83,12 +218,12 @@ function Dashboard(props) {
       <Box component="main" sx={{ p: 3, width: '100%        ' }}>
         <Toolbar />
         <Typography
-        variant='h3' 
-        sx={{textAlign:'center'}} 
+          variant='h3'
+          sx={{ textAlign: 'center' }}
         >
           Welcome to Dashboard
         </Typography>
-        <Outlet/>
+        <Outlet />
       </Box>
     </Box>
   );

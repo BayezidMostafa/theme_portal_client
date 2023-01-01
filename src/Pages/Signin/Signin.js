@@ -2,7 +2,6 @@ import { Box, TextField } from '@mui/material';
 import React, { useContext } from 'react';
 import { FormFooterText, FormHeaderText, LoaderFull, SecondaryBtn } from '../../Styles/Index';
 import GoogleIcon from '@mui/icons-material/Google';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { AuthContext } from '../../Context/Authentication/Authentication';
 import { LoginForm, LoginSection } from './SigninStyle';
 import { signInLogo } from '../../Assets';

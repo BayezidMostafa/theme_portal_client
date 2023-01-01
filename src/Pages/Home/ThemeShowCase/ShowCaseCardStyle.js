@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
 export const ShowCaseCardSection = styled.section`
+    border-radius: 7px;
     position: relative;
     width: 100%;
     height: 100%;
     img{
+        border-radius: 7px;
+        width: 100%;
+        height: 100%;
         opacity: 1;
         display: block;
-        width: 100%;
-        height: auto;
         transition: .5s ease;
         backface-visibility: hidden;
     }

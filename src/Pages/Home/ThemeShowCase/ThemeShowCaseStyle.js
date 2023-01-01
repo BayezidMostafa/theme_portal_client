@@ -18,6 +18,8 @@ export const ShowCaseData = styled.div`
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 `
-export const LoadMoreButton = styled.button`
-    
+export const LoadMoreButtonContainer = styled.div`
+    margin: auto;
+    width: 20%;
+    height: auto;
 `

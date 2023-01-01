@@ -5,7 +5,7 @@ import { DevInformation, TechStackFont, ThemeDetailsHeaderText, ThemeDetailsSect
 
 const ThemeDetails = () => {
     const themeData = useLoaderData()
-    const { title, full_picture, price, main_tech, email, dev_profile, template_features, technologies } = themeData;
+    const { title, full_picture, price, main_tech, email, dev_profile, live_preview, template_features, technologies } = themeData;
     return (
         <ThemeDetailsSectionContainer>
             <ThemeDetailsHeaderText>
@@ -32,6 +32,9 @@ const ThemeDetails = () => {
                     </Typography>
                     <Typography sx={{marginTop: '5px'}} >
                         <span style={{fontWeight: '500'}} >Features</span>: {template_features}
+                    </Typography>
+                    <Typography as='a' target='_blank' href={live_preview} sx={{marginTop: '5px'}} >
+                        Live Preview
                     </Typography>
                     <Typography sx={{marginTop: '5px'}} >Developer Information: ➘</Typography>
                     <DevInformation>

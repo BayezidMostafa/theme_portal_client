@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { SyncLoader } from 'react-spinners';
+import { BarLoader, SyncLoader } from 'react-spinners';
 import Button from '../../../Components/Button/Button';
 import ShowCaseCard from './ShowCaseCard';
-import { ShowCaseData, ShowCaseHeader, ShowCaseSection } from './ThemeShowCaseStyle';
+import { LoadMoreButtonContainer, ShowCaseData, ShowCaseHeader, ShowCaseSection } from './ThemeShowCaseStyle';
 
 const ThemeShowCase = () => {
 
@@ -47,7 +47,11 @@ const ThemeShowCase = () => {
                             </ShowCaseData>
                         </>
                 }
-                <Button style={{width: '20%'}} onClick={sizeIncreaser}>Load More</Button>
+                <LoadMoreButtonContainer>
+                    <Button style={{ width: '20%' }} onClick={sizeIncreaser}>{
+                        isLoading ? <><BarLoader color="#ffffff" /></> : <>Load More</>
+                    }</Button>
+                </LoadMoreButtonContainer>
             </ShowCaseSection>
 
         </>

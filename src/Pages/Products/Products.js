@@ -10,9 +10,6 @@ const Products = () => {
             return res.data
         }
     })
-
-    console.log(themes);
-
     return (
         <div>
             

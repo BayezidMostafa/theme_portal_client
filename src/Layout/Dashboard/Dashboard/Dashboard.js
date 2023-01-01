@@ -11,7 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Link, Outlet } from 'react-router-dom';
-import { ButtonContainer, ButtonContainerSideBar, ButtonMain, ButtonMainSideBar, LinkContainer } from './DashboardStyles';
+import { ButtonContainerSideBar, ButtonMainSideBar, LinkContainer } from './DashboardStyles';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { AuthContext } from '../../../Context/Authentication/Authentication';
@@ -21,7 +21,6 @@ const drawerWidth = 240;
 function Dashboard(props) {
 
   const { user } = React.useContext(AuthContext);
-  console.log(user);
 
   const { data: userData = [], isLoading } = useQuery({
     queryKey: ['user'],
@@ -35,7 +34,6 @@ function Dashboard(props) {
     }
   })
 
-  console.log(userData);
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -59,22 +57,22 @@ function Dashboard(props) {
         {
           userData?.role === 'admin' ?
             <>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/alldevelopers">
                 <ButtonMainSideBar>
                   All Developers
                 </ButtonMainSideBar>
               </ButtonContainerSideBar>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/allclients">
                 <ButtonMainSideBar>
                   All Client
                 </ButtonMainSideBar>
               </ButtonContainerSideBar>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/reporteditems">
                 <ButtonMainSideBar>
                   Reported items
                 </ButtonMainSideBar>
               </ButtonContainerSideBar>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/verifyrequest">
                 <ButtonMainSideBar>
                   Verify Request
                 </ButtonMainSideBar>
@@ -164,10 +162,10 @@ function Dashboard(props) {
               userData?.role === 'admin' ?
                 <>
                   <LinkContainer>
-                    <Link>All Developers</Link>
-                    <Link>All Clients</Link>
-                    <Link>Reported Items</Link>
-                    <Link>Verify Request</Link>
+                    <Link to="/dashboard/alldevelopers" >All Developers</Link>
+                    <Link to="/dashboard/allclients">All Clients</Link>
+                    <Link to="/dashboard/reporteditems">Reported Items</Link>
+                    <Link to="/dashboard/verifyrequest">Verify Request</Link>
                   </LinkContainer>
                 </>
                 :

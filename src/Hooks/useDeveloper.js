@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+
 
 const useDeveloper = email => {
     const [developer, setDeveloper] = useState(false);
     const [developerLoading, setDeveloperLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/seller/${email}`)
+            fetch(`http://localhost:5000/users/developer/${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
-                    setDeveloper(data.seller);
+                    setDeveloper(data.developer);
                     setDeveloperLoading(false);
                 })
         }

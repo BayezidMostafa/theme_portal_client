@@ -1,5 +1,4 @@
 export const authToken = user => {
-    console.log('Hello from Auth Token', user);
     const currentUser = {
         email: user.email,
     }

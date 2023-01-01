@@ -6,7 +6,6 @@ import { DevInformation, TechStackFont, ThemeDetailsHeaderText, ThemeDetailsSect
 const ThemeDetails = () => {
     const themeData = useLoaderData()
     const { title, full_picture, price, main_tech, email, dev_profile, template_features, technologies } = themeData;
-    console.log(themeData);
     return (
         <ThemeDetailsSectionContainer>
             <ThemeDetailsHeaderText>

@@ -13,15 +13,17 @@ import { toast } from 'react-hot-toast';
 import Button from '../../Components/Button/Button';
 import axios from 'axios';
 import { authToken } from '../../Authorization/authToken';
+import { SyncLoader } from 'react-spinners';
 
 const Signup = () => {
-    const { googleSignIn, githubSignIn, createUser, updateUser } = useContext(AuthContext);
+    const { googleSignIn, githubSignIn, createUser, updateUser, loading, setLoading } = useContext(AuthContext);
 
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/';
 
     const handleOnSubmit = event => {
+        setLoading(true);
         event.preventDefault()
         const form = event.target;
         const name = form.name.value;
@@ -53,10 +55,11 @@ const Signup = () => {
                         }
                         updateUser(profile)
                             .then(() => {
-
+                                setLoading(false);
                             })
                             .catch(err => {
                                 console.error(err.message);
+                                setLoading(false)
                             })
                         axios.put('http://localhost:5000/users', userInfo, {
                             headers: {
@@ -64,11 +67,13 @@ const Signup = () => {
                             }
                         })
                             .then(result => {
-                                authToken(userInfo)
-                                navigate(from, { replace: true });
                                 toast.success('Welcome to Theme Portal')
+                                authToken(userInfo)
+                                setLoading(false);
+                                navigate(from, { replace: true });
                             })
                             .catch(err => {
+                                setLoading(false)
                                 console.error(err.message);
                             })
                     })
@@ -80,6 +85,7 @@ const Signup = () => {
     }
 
     const handleGoogleSignIn = () => {
+        setLoading(true);
         googleSignIn()
             .then(result => {
                 const user = result.user;
@@ -94,11 +100,13 @@ const Signup = () => {
                     }
                 })
                     .then(result => {
-                        authToken(userInfo)
-                        navigate(from, { replace: true });
                         toast.success('Welcome to Theme Portal')
+                        setLoading(false);
+                        authToken(result?.user)
+                        navigate(from, { replace: true });
                     })
                     .catch(err => {
+                        setLoading(false);
                         console.error(err.message);
                     })
             })
@@ -112,7 +120,6 @@ const Signup = () => {
                     email: user?.email,
                     role: 'client'
                 }
-                console.log(user);
                 axios.put('http://localhost:5000/users', userInfo, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('theme-token')}`
@@ -127,6 +134,14 @@ const Signup = () => {
                         console.error(err.message);
                     })
             })
+    }
+
+    if(loading){
+        return(
+            <Box sx={{}} >
+                <SyncLoader color="#ffffff" />
+            </Box>
+        )
     }
 
     return (

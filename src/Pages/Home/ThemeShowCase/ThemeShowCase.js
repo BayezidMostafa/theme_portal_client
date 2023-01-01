@@ -10,10 +10,6 @@ const ThemeShowCase = () => {
 
     const [size, setSize] = useState(3);
 
-
-
-    console.log(size);
-
     const { data: themes = [], isLoading, refetch } = useQuery({
         queryKey: ['themes'],
         queryFn: async () => {
@@ -29,9 +25,6 @@ const ThemeShowCase = () => {
         })
         setSize(size + 3);
     }
-
-    console.log(themes);
-
 
 
     return (

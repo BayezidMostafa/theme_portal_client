@@ -9,11 +9,10 @@ import { signInLogo } from '../../Assets';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import Button from '../../Components/Button/Button';
-import axios from 'axios';
 import { authToken } from '../../Authorization/authToken';
 
 const Signin = () => {
-    const { userSignIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+    const { userSignIn, googleSignIn, githubSignIn, loading, setLoading } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/';
@@ -36,28 +35,43 @@ const Signin = () => {
     }
 
     const handleGoogleSignIn = () => {
+        setLoading(true);
         googleSignIn()
             .then(result => {
-                const user = result.user;
-                const userInfo = {
-                    name: user?.displayName,
-                    email: user?.email,
-                    role: 'client'
-                }
-                axios.put('http://localhost:5000/users', userInfo, {
-                    headers: {
-                        authorization: `Bearer ${localStorage.getItem('theme-token')}`
+                const user = result?.user;
+                if (result.user) {
+                    const userInfo = {
+                        name: user?.displayName,
+                        email: user?.email,
+                        role: 'client'
                     }
-                })
-                    .then(result => {
-                        authToken(userInfo)
-                        navigate(from, { replace: true });
-                        toast.success('Welcome to Theme Portal')
+                    fetch('http://localhost:5000/users', {
+                        method: "PUT",
+                        headers: {
+                            'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem('theme-token')}`
+                        },
+                        body: JSON.stringify(userInfo)
                     })
-                    .catch(err => {
-                        console.error(err.message);
-                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            authToken(user)
+                            console.log(data);
+                            toast.success('Google Log In Successful')
+                            setLoading(false)
+                            navigate(from, { replace: true })
+                        })
+
+                }
             })
+    }
+
+    if(loading){
+        return (
+            <Box>
+                
+            </Box>
+        )
     }
 
     return (

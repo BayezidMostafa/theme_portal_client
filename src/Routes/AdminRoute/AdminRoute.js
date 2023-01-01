@@ -12,7 +12,7 @@ const AdminRoute = ({ children }) => {
 
     if (loading || adminLoading) {
         return (
-            <Box>
+            <Box sx={{ minHeight: '100vh', minWidth: '100vw', justifyContent: 'center', alignItems: 'center' }}>
                 <SyncLoader color="#36d7b7" />
             </Box>
         )

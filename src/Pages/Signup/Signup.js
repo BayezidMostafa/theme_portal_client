@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/Authentication/Authentication';
 import { FormFooterText, FormHeaderText, LoaderFull, SecondaryBtn } from '../../Styles/Index';
 import GoogleIcon from '@mui/icons-material/Google';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LoginForm, LoginSection } from '../Signin/SigninStyle';
 import { signup } from '../../Assets';
@@ -16,7 +15,7 @@ import { authToken } from '../../Authorization/authToken';
 import { SyncLoader } from 'react-spinners';
 
 const Signup = () => {
-    const { googleSignIn, githubSignIn, createUser, updateUser, loading, setLoading } = useContext(AuthContext);
+    const { googleSignIn, createUser, updateUser, loading, setLoading } = useContext(AuthContext);
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -110,34 +109,14 @@ const Signup = () => {
                         console.error(err.message);
                     })
             })
-    }
-    const handleGitHubSignIn = () => {
-        githubSignIn()
-            .then(result => {
-                const user = result.user;
-                const userInfo = {
-                    name: user?.displayName,
-                    email: user?.email,
-                    role: 'client'
-                }
-                axios.put('http://localhost:5000/users', userInfo, {
-                    headers: {
-                        authorization: `Bearer ${localStorage.getItem('theme-token')}`
-                    }
-                })
-                    .then(result => {
-                        authToken(userInfo)
-                        navigate(from, { replace: true });
-                        toast.success('Welcome to Theme Portal')
-                    })
-                    .catch(err => {
-                        console.error(err.message);
-                    })
+            .catch(err => {
+                console.error(err.message)
+                setLoading(false)
             })
     }
 
-    if(loading){
-        return(
+    if (loading) {
+        return (
             <LoaderFull>
                 <SyncLoader color="#36d7b7" />
             </LoaderFull>
@@ -167,7 +146,6 @@ const Signup = () => {
                 </form>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '.5rem' }}>
                     <SecondaryBtn onClick={handleGoogleSignIn} ><GoogleIcon sx={{ color: '#2467ed' }} /></SecondaryBtn>
-                    <SecondaryBtn onClick={handleGitHubSignIn} ><GitHubIcon sx={{ color: 'black' }} /></SecondaryBtn>
                 </Box>
                 <FormFooterText>
                     Already have an account <Link to='/signin' style={{ color: '#2E7D32', textDecoration: 'underline' }} >Sign In</Link>

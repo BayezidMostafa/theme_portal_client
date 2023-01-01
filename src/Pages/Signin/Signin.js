@@ -13,7 +13,7 @@ import { authToken } from '../../Authorization/authToken';
 import { SyncLoader } from 'react-spinners';
 
 const Signin = () => {
-    const { userSignIn, googleSignIn, githubSignIn, loading, setLoading } = useContext(AuthContext);
+    const { userSignIn, googleSignIn, loading, setLoading } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/';
@@ -65,10 +65,14 @@ const Signin = () => {
 
                 }
             })
+            .catch(err => {
+                console.error(err.message)
+                setLoading(false)
+            })
     }
 
-    if(loading){
-        return(
+    if (loading) {
+        return (
             <LoaderFull>
                 <SyncLoader color="#36d7b7" />
             </LoaderFull>
@@ -89,7 +93,6 @@ const Signin = () => {
                 </form>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '.5rem' }}>
                     <SecondaryBtn onClick={handleGoogleSignIn}><GoogleIcon sx={{ color: '#2467ed' }} /></SecondaryBtn>
-                    <SecondaryBtn onClick={githubSignIn}><GitHubIcon sx={{ color: 'black' }} /></SecondaryBtn>
                 </Box>
                 <FormFooterText>
                     Need to create an account <Link to='/signup' style={{ color: '#2E7D32', textDecoration: 'underline' }} >Sign Up</Link>

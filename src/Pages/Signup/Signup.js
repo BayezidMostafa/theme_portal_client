@@ -1,7 +1,7 @@
 import { Box, NativeSelect, TextField } from '@mui/material';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/Authentication/Authentication';
-import { FormFooterText, FormHeaderText, SecondaryBtn } from '../../Styles/Index';
+import { FormFooterText, FormHeaderText, LoaderFull, SecondaryBtn } from '../../Styles/Index';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -138,9 +138,9 @@ const Signup = () => {
 
     if(loading){
         return(
-            <Box sx={{}} >
-                <SyncLoader color="#ffffff" />
-            </Box>
+            <LoaderFull>
+                <SyncLoader color="#36d7b7" />
+            </LoaderFull>
         )
     }
 

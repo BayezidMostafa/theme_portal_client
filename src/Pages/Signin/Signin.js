@@ -1,6 +1,6 @@
 import { Box, TextField } from '@mui/material';
 import React, { useContext } from 'react';
-import { FormFooterText, FormHeaderText, SecondaryBtn } from '../../Styles/Index';
+import { FormFooterText, FormHeaderText, LoaderFull, SecondaryBtn } from '../../Styles/Index';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { AuthContext } from '../../Context/Authentication/Authentication';
@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import Button from '../../Components/Button/Button';
 import { authToken } from '../../Authorization/authToken';
+import { SyncLoader } from 'react-spinners';
 
 const Signin = () => {
     const { userSignIn, googleSignIn, githubSignIn, loading, setLoading } = useContext(AuthContext);
@@ -67,10 +68,10 @@ const Signin = () => {
     }
 
     if(loading){
-        return (
-            <Box>
-                
-            </Box>
+        return(
+            <LoaderFull>
+                <SyncLoader color="#36d7b7" />
+            </LoaderFull>
         )
     }
 

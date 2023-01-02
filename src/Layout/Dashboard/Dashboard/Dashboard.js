@@ -50,7 +50,7 @@ function Dashboard(props) {
       <Divider />
       <List>
         <ButtonContainerSideBar>
-          <ButtonMainSideBar>
+          <ButtonMainSideBar as={Link} to='/'>
             Home
           </ButtonMainSideBar>
         </ButtonContainerSideBar>

@@ -37,6 +37,12 @@ export const FeatureCardTitle = styled.p`
     font-weight: 600;
     color: black;
     text-shadow: 0 0 3px gray;
+    @media ${(props) => props.theme.breakpoints.md}{
+        font-size: 1.5rem;
+    }
+    @media ${(props) => props.theme.breakpoints.sm}{
+        font-size: 1.2rem;
+    }
 `
 export const FeatureCardText = styled.p`
     font-size: 1rem;

@@ -45,7 +45,7 @@ function Dashboard(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Theme Portal
       </Typography>
       <Divider />
       <List>
@@ -108,17 +108,17 @@ function Dashboard(props) {
         {
           userData?.role === 'client' ?
             <>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/myorders" >
                 <ButtonMainSideBar>
                   My Orders
                 </ButtonMainSideBar>
               </ButtonContainerSideBar>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/wishlist" >
                 <ButtonMainSideBar>
                   Wish List
                 </ButtonMainSideBar>
               </ButtonContainerSideBar>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/mypurchase" >
                 <ButtonMainSideBar>
                   My Purchase
                 </ButtonMainSideBar>
@@ -185,9 +185,9 @@ function Dashboard(props) {
               userData?.role === 'client' ?
                 <>
                   <LinkContainer>
-                    <Link>My Order</Link>
-                    <Link>Wish List</Link>
-                    <Link>My Purchase</Link>
+                    <Link to="/dashboard/myorders" >My Order</Link>
+                    <Link to="/dashboard/wishlist" >Wish List</Link>
+                    <Link to="/dashboard/mypurchase" >My Purchase</Link>
                   </LinkContainer>
                 </>
                 :
@@ -213,14 +213,8 @@ function Dashboard(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ p: 3, width: '100%        ' }}>
+      <Box component="main" sx={{ p: 3, width: '100%' }}>
         <Toolbar />
-        <Typography
-          variant='h3'
-          sx={{ textAlign: 'center' }}
-        >
-          Welcome to Dashboard
-        </Typography>
         <Outlet />
       </Box>
     </Box>

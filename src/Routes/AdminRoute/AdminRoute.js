@@ -1,9 +1,9 @@
-import { Box } from '@mui/system';
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { SyncLoader } from 'react-spinners';
 import { AuthContext } from '../../Context/Authentication/Authentication';
 import useAdmin from '../../Hooks/useAdmin';
+import { LoaderFull } from '../../Styles/Index';
 
 const AdminRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext)
@@ -12,9 +12,9 @@ const AdminRoute = ({ children }) => {
 
     if (loading || adminLoading) {
         return (
-            <Box sx={{ minHeight: '100vh', minWidth: '100vw', justifyContent: 'center', alignItems: 'center' }}>
-                <SyncLoader color="#36d7b7" />
-            </Box>
+            <LoaderFull>
+                <SyncLoader color="#2e5248" />
+            </LoaderFull>
         )
     }
     if (admin) {

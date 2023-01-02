@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { BarLoader, SyncLoader } from 'react-spinners';
 import Button from '../../../Components/Button/Button';
+import { LoaderSmall } from '../../../Styles/Index';
 import ShowCaseCard from './ShowCaseCard';
 import { LoadMoreButtonContainer, ShowCaseData, ShowCaseHeader, ShowCaseSection } from './ThemeShowCaseStyle';
 
@@ -36,7 +37,9 @@ const ThemeShowCase = () => {
                 {
                     isLoading ?
                         <>
-                            <SyncLoader color="#36d7b7" />
+                            <LoaderSmall>
+                                <SyncLoader color="#2e5248" />
+                            </LoaderSmall>
                         </>
                         :
                         <>

@@ -171,4 +171,11 @@ export const LoaderFull = styled.div`
   justify-content: center;
   align-items: center;
 `
+export const LoaderSmall = styled.div`
+  min-height: 50vh;
+  min-width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 

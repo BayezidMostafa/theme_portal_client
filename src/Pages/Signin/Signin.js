@@ -73,7 +73,7 @@ const Signin = () => {
     if (loading) {
         return (
             <LoaderFull>
-                <SyncLoader color="#36d7b7" />
+                <SyncLoader color="#2e5248" />
             </LoaderFull>
         )
     }

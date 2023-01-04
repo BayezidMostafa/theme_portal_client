@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import logo from '../../../Assets/logo.png'
 import { AuthContext } from '../../../Context/Authentication/Authentication';
+import { MenuItem } from '@mui/material';
 
 
 function NavBar() {
@@ -77,6 +78,9 @@ function NavBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
+                            <Button sx={{ color: '#416259', display: 'block' }} as={Link} to="/">
+                                Home
+                            </Button>
                             <Button sx={{ color: '#416259', display: 'block' }} as={Link} to="/contact">
                                 Contact Us
                             </Button>
@@ -113,6 +117,9 @@ function NavBar() {
 
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
+                        <Button sx={{ color: '#416259', fontWeight: '700' }} as={Link} to="/">
+                            Home
+                        </Button>
                         <Button sx={{ color: '#416259', fontWeight: '700' }} as={Link} to="/contact">
                             Contact Us
                         </Button>
@@ -127,7 +134,7 @@ function NavBar() {
                     {
                         user?.uid ?
                             <>
-                                <Box sx={{ flexGrow: 0 }}>
+                                <Box sx={{ flexGrow: 0, position: 'relative' }}>
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                         <Avatar alt={user?.displayName} src={user?.photoURL} />
                                     </IconButton>
@@ -147,8 +154,10 @@ function NavBar() {
                                         open={Boolean(anchorElUser)}
                                         onClose={handleCloseUserMenu}
                                     >
-                                        <Button sx={{ display: 'block', color: 'green' }} as={Link} to="/dashboard" >Dashboard</Button>
-                                        <Button sx={{ display: 'block', color: 'green' }} onClick={userSignOut} >SignOut</Button>
+                                        <MenuItem sx={{}} onClick={handleCloseUserMenu} >
+                                            <Button fullWidth sx={{ display: 'block', color: 'green' }} as={Link} to="/dashboard" >Dashboard</Button>
+                                            <Button fullWidth sx={{ display: 'block', color: 'green' }} onClick={userSignOut} >SignOut</Button>
+                                        </MenuItem>
                                     </Menu>
                                 </Box>
                             </>

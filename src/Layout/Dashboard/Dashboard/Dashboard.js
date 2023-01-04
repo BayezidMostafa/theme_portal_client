@@ -86,17 +86,17 @@ function Dashboard(props) {
         {
           userData?.role === 'developer' ?
             <>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/mytemplates">
                 <ButtonMainSideBar>
                   My Templates
                 </ButtonMainSideBar>
               </ButtonContainerSideBar>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/addtemplate" >
                 <ButtonMainSideBar>
                   Add Template
                 </ButtonMainSideBar>
               </ButtonContainerSideBar>
-              <ButtonContainerSideBar>
+              <ButtonContainerSideBar as={Link} to="/dashboard/requestverification">
                 <ButtonMainSideBar>
                   Request Verification
                 </ButtonMainSideBar>
@@ -175,9 +175,9 @@ function Dashboard(props) {
               userData?.role === 'developer' ?
                 <>
                   <LinkContainer>
-                    <Link>My Templates</Link>
-                    <Link>Add Template</Link>
-                    <Link>Request Verification</Link>
+                    <Link to="/dashboard/mytemplates">My Templates</Link>
+                    <Link to="/dashboard/addtemplate">Add Template</Link>
+                    <Link to="/dashboard/requestverification">Request Verification</Link>
                   </LinkContainer>
                 </> : <></>
             }

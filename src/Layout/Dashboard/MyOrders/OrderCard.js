@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 export default function OrderCard({ order, refetch }) {
     const {
@@ -22,10 +23,12 @@ export default function OrderCard({ order, refetch }) {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }
         })
-        .then(res => {
-            refetch()
-            console.log(res.data);
-        })
+            .then(res => {
+                if (res.data.acknowledged) {
+                    refetch()
+                    toast.success('Order Canceled')
+                }
+            })
     }
 
     return (

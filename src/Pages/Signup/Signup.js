@@ -13,7 +13,7 @@ import Button from '../../Components/Button/Button';
 import axios from 'axios';
 import { authToken } from '../../Authorization/authToken';
 import { SyncLoader } from 'react-spinners';
-
+                    
 const Signup = () => {
     const { googleSignIn, createUser, updateUser, loading, setLoading } = useContext(AuthContext);
 

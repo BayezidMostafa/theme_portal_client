@@ -7,7 +7,7 @@ import WishlistCard from './WishlistCard';
 
 const WishList = () => {
     const { user } = useContext(AuthContext);
-    const { data: wishlist = [] } = useQuery({
+    const { data: wishlist = [], refetch } = useQuery({
         queryKey: ['wishlist'],
         queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/wishlists/${user?.email}`, {
@@ -22,11 +22,7 @@ const WishList = () => {
     return (
         <OrderSectionContainer>
             {
-
-
-                wishlist?.map(wish => <WishlistCard key={wish._id} wish={wish} />)
-
-
+                wishlist?.map(wish => <WishlistCard key={wish._id} wish={wish} refetch={refetch} />)
             }
         </OrderSectionContainer>
     );

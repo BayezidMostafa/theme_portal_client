@@ -136,7 +136,7 @@ function Dashboard(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar color='transparent' component="nav">
+      <AppBar color='inherit' component="nav">
         <Toolbar>
           <IconButton
             color="inherit"

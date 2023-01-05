@@ -7,8 +7,9 @@ import { AddThemeBanner } from '../../../Assets';
 import Button from '../../../Components/Button/Button';
 import { AuthContext } from '../../../Context/Authentication/Authentication';
 import { ImageInputSignUp } from '../../../Pages/Signup/SignUpStyle';
-import { FormHeaderText } from '../../../Styles/Index';
+import { FormHeaderText, LoaderFull } from '../../../Styles/Index';
 import { AddThemeSection, BannerContainer, FormContainer } from './AddTemplatesStyles';
+import { SyncLoader } from 'react-spinners';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -47,12 +48,13 @@ const names = [
 
 const AddTemplates = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, loading, setLoading } = useContext(AuthContext);
     const [tech, setTech] = React.useState([]);
 
     const handleOnSubmit = event => {
 
         event.preventDefault()
+        setLoading(true)
         const form = event.target;
         const title = form.title.value;
         const image_1 = form.thumb.files[0];
@@ -80,30 +82,47 @@ const AddTemplates = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        const full_picture = data.data.display_url;
-                        const theme = {
-                            title,
-                            thumb,
-                            full_picture,
-                            price,
-                            main_tech,
-                            live_preview,
-                            email: user?.email,
-                            dev_profile: user?.photoURL,
-                            verified: false,
-                            template_features: features,
-                            technologies: tech
-                        }
-                        axios.put('http://localhost:5000/theme', theme, {
-                            headers: {
-                                authorization: `Bearer ${localStorage.getItem('theme-token')}`
+                        if (data.data) {
+                            const full_picture = data.data.display_url;
+                            const theme = {
+                                title,
+                                thumb,
+                                full_picture,
+                                price,
+                                main_tech,
+                                live_preview,
+                                email: user?.email,
+                                dev_profile: user?.photoURL,
+                                verified: false,
+                                template_features: features,
+                                technologies: tech
                             }
-                        })
-                        .then(res => {
-                            console.log(res.data);
-                            toast.success('Theme Uploaded Successfully')
-                        })
+                            axios.put('http://localhost:5000/theme', theme, {
+                                headers: {
+                                    authorization: `Bearer ${localStorage.getItem('theme-token')}`
+                                }
+                            })
+                                .then(res => {
+                                    setLoading(false)
+                                    console.log(res.data);
+                                    form.reset();
+                                    toast.success('Theme Uploaded Successfully')
+                                })
+                                .catch(err => {
+                                    console.error(err.message);
+                                    setLoading(false)
+                                })
+                        }
+
                     })
+                    .catch(err => {
+                        console.error(err.message);
+                        setLoading(false)
+                    })
+            })
+            .catch(err => {
+                console.error(err.message);
+                setLoading(false)
             })
 
     }
@@ -119,6 +138,14 @@ const AddTemplates = () => {
             typeof value === 'string' ? value.split(',') : value,
         );
     };
+
+    if (loading) {
+        return (
+            <LoaderFull>
+                <SyncLoader color="#2e5248" />
+            </LoaderFull>
+        )
+    }
 
     return (
         <AddThemeSection>
@@ -169,7 +196,7 @@ const AddTemplates = () => {
                     <TextField size='small' name='main_tech' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Main Technology" variant="outlined" />
                     <TextField size='small' name='live_preview' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Live Link" variant="outlined" />
                     <textarea placeholder='Theme Features' style={{ width: '100%', marginTop: '10px', paddingTop: '5px', paddingLeft: '10px' }} name="features" id="" rows="5"></textarea>
-                    <Button type="submit" >Sign Up</Button>
+                    <Button type="submit" >Add Theme</Button>
                 </form>
             </FormContainer>
         </AddThemeSection>

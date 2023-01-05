@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ShowCaseCardSection = styled.section`
     border-radius: 7px;
     position: relative;
+    margin: 0 auto;
     width: 100%;
     height: 100%;
     img{

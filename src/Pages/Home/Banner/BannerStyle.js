@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { banner } from "../../../Assets";
 
 export const BannerSection = styled.div`
     max-width: 75%;
@@ -11,16 +10,24 @@ export const BannerSection = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background-image: url(${banner});
+    background-image: linear-gradient(135deg, #006A4E, #1B4D3E, #00563B, #018749, #006400, #00563B, #006A4E);
     min-height: 70vh;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: 500%;
+    animation: gradient 10s ease infinite alternate;
     @media ${(props) => props.theme.breakpoints.md} {
         min-width: 90%;
     }
     @media ${(props) => props.theme.breakpoints.sm} {
         min-width: 100%;
     }
+    @keyframes gradient {
+	0% {
+		background-position: left;
+	}
+	100% {
+		background-position: right;
+	}
+}
 
 
 `

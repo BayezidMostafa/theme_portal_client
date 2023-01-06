@@ -8,6 +8,7 @@ import { SyncLoader } from 'react-spinners';
 import { AuthContext } from '../../Context/Authentication/Authentication';
 import { LoaderFull } from '../../Styles/Index';
 import { ButtonContainerThemeDetails, ButtonThemeDetails, DevInformation, ThemeButtonContainer, ThemeDetailsHeaderText, ThemeDetailsSection, ThemeDetailsSectionContainer, ThemeInformationContainer, ThemePictureContainer } from './ThemeDetailsStyle';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
 const ThemeDetails = () => {
     const themeData = useLoaderData()
@@ -36,9 +37,7 @@ const ThemeDetails = () => {
             </LoaderFull>
         )
     }
-
     const handleBookTheme = () => {
-
         const order = {
             booking_id: _id,
             userEmail,
@@ -47,7 +46,6 @@ const ThemeDetails = () => {
             price,
             live_preview
         }
-
         axios.put('http://localhost:5000/order', order)
             .then(res => {
                 if (res.data.upsertedCount !== 1) {
@@ -109,7 +107,9 @@ const ThemeDetails = () => {
                     <Typography sx={{ marginTop: '5px' }} >Developer Information: ➘</Typography>
                     <DevInformation>
                         <Avatar variant='rounded' sx={{ width: 56, height: 56 }} src={dev_profile} />
-                        <Typography color='white' >Email: {email}</Typography>
+                        <Typography as="a" href={`mailto:${email}`} sx={{}} color='inherit' >
+                            <EmailOutlinedIcon fontSize='large' />
+                        </Typography>
                     </DevInformation>
                     <ThemeButtonContainer>
                         <ButtonContainerThemeDetails>

@@ -22,19 +22,31 @@ export const AddThemeSection = styled.section`
     }
 `
 export const BannerContainer = styled.div`
+    width: 80%;
+    margin: 10px auto;
     img{
-        min-width: 350px;
-        @media ${(props) => props.theme.breakpoints.lg} {
+        width: 100%;
+    }
+    @media ${(props) => props.theme.breakpoints.lg} {
         
-        }
-        @media ${(props) => props.theme.breakpoints.md} {
-        
-        }
-        @media ${(props) => props.theme.breakpoints.sm} {
-        
-        }
+    }
+    @media ${(props) => props.theme.breakpoints.md} {
+    
+    }
+    @media ${(props) => props.theme.breakpoints.sm} {
+    
     }
 `
 export const FormContainer = styled.div`
-
+    width: 80%;
+    margin: 10px auto;
+    @media ${(props) => props.theme.breakpoints.lg} {
+        
+    }
+    @media ${(props) => props.theme.breakpoints.md} {
+    
+    }
+    @media ${(props) => props.theme.breakpoints.sm} {
+    
+    }
 `

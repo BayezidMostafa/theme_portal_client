@@ -37,14 +37,12 @@ export const ThemeInformationContainer = styled.div`
     margin: 0 auto;
 `
 export const DevInformation = styled.div`
-    width: 80%;
-    background: linear-gradient(#e1e4e8, #aeafb0);
     margin: 1rem auto;
     border-radius: 10px;
     padding: 10px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 1rem;
 `
 export const ThemeButtonContainer = styled.div`
     gap: .5rem;

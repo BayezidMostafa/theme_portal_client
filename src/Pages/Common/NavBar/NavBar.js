@@ -154,7 +154,7 @@ function NavBar() {
                                         open={Boolean(anchorElUser)}
                                         onClose={handleCloseUserMenu}
                                     >
-                                        <MenuItem sx={{}} onClick={handleCloseUserMenu} >
+                                        <MenuItem sx={{display: 'flex', flexDirection: 'column'}} onClick={handleCloseUserMenu} >
                                             <Button fullWidth sx={{ display: 'block', color: 'green' }} as={Link} to="/dashboard" >Dashboard</Button>
                                             <Button fullWidth sx={{ display: 'block', color: 'green' }} onClick={userSignOut} >SignOut</Button>
                                         </MenuItem>

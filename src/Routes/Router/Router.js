@@ -14,6 +14,7 @@ import WishList from "../../Layout/Dashboard/WishList/WishList";
 import Main from "../../Layout/Main/Main";
 import Blog from "../../Pages/Blog/Blog";
 import Contact from "../../Pages/Contact/Contact";
+import Error from "../../Pages/Error/Error";
 import Home from "../../Pages/Home/Home/Home";
 import Signin from "../../Pages/Signin/Signin";
 import Signup from "../../Pages/Signup/Signup";
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
+        errorElement: <Error/>,
         children: [
             {
                 path: '/',
@@ -63,6 +65,7 @@ export const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
+        errorElement: <Error/>,
         children: [
             {
                 path: '/dashboard/alldevelopers',

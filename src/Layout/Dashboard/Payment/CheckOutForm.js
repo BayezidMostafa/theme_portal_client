@@ -4,6 +4,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../Context/Authentication/Authentication';
+import { CheckOutContainer } from './CheckOutFormStyle';
 
 const CheckOutForm = ({ themeInfo }) => {
     const [cardError, setCardError] = useState('');
@@ -106,7 +107,7 @@ const CheckOutForm = ({ themeInfo }) => {
     }
 
     return (
-        <Box className='mt-10'>
+        <CheckOutContainer>
             <form onSubmit={handleFormSubmit}>
                 <CardElement
                     options={{
@@ -138,7 +139,7 @@ const CheckOutForm = ({ themeInfo }) => {
                     <Typography variant='h6' color='success' >Your transactionId: {transactionID}</Typography>
                 </div>
             }
-        </Box>
+        </CheckOutContainer>
     );
 };
 

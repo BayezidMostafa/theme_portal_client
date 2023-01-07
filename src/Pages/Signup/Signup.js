@@ -131,7 +131,7 @@ const Signup = () => {
             <LoginForm>
                 <form onSubmit={handleOnSubmit} >
                     <FormHeaderText>Sign Up</FormHeaderText>
-                    <TextField size='small' type='text' name='name' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Name" variant="outlined" />
+                    <TextField size='small' type='name' name='name' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Name" variant="outlined" />
                     <NativeSelect sx={{ marginY: '10px' }} variant='contained' fullWidth color='success' name='role' >
                         <option value="client">Client</option>
                         <option value="developer">Developer</option>

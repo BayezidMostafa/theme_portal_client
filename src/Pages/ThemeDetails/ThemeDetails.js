@@ -1,7 +1,7 @@
 import { Avatar, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import { SyncLoader } from 'react-spinners';
@@ -9,10 +9,11 @@ import { AuthContext } from '../../Context/Authentication/Authentication';
 import { LoaderFull } from '../../Styles/Index';
 import { ButtonContainerThemeDetails, ButtonThemeDetails, DevInformation, ThemeButtonContainer, ThemeDetailsHeaderText, ThemeDetailsSection, ThemeDetailsSectionContainer, ThemeInformationContainer, ThemePictureContainer } from './ThemeDetailsStyle';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import VerificationStatus from './VerificationStatus';
 
 const ThemeDetails = () => {
     const themeData = useLoaderData()
-    const { thumb, _id, title, full_picture, price, main_tech, email, dev_profile, live_preview, template_features, technologies, } = themeData;
+    const { thumb, _id, title, full_picture, price, main_tech, email, dev_profile, live_preview, template_features, technologies, verified } = themeData;
     const { user } = useContext(AuthContext)
     const { email: userEmail } = user;
     const { data: orderStatus = [], refetch } = useQuery({
@@ -74,6 +75,8 @@ const ThemeDetails = () => {
             })
     }
 
+    
+
     return (
         <ThemeDetailsSectionContainer>
             <ThemeDetailsHeaderText>
@@ -109,6 +112,9 @@ const ThemeDetails = () => {
                         <Avatar variant='rounded' sx={{ width: 56, height: 56 }} src={dev_profile} />
                         <Typography as="a" href={`mailto:${email}`} sx={{}} color='inherit' >
                             <EmailOutlinedIcon fontSize='large' />
+                        </Typography>
+                        <Typography sx={{ display: 'block' }} >
+                            <VerificationStatus email={email} refetch={refetch} />
                         </Typography>
                     </DevInformation>
                     <ThemeButtonContainer>

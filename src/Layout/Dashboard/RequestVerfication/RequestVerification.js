@@ -41,7 +41,6 @@ const RequestVerification = () => {
         const role = form.role.value;
         const project_link = form.project_link.value;
         const resume_link = form.resume_link.value;
-        const cover_letter = form.cover_letter.value;
         const devProfile = {
             email,
             displayName,
@@ -49,7 +48,6 @@ const RequestVerification = () => {
             role,
             project_link,
             resume_link,
-            cover_letter
         }
         console.log(devProfile);
         axios.put('http://localhost:5000/request', devProfile, {
@@ -93,7 +91,6 @@ const RequestVerification = () => {
                     </NativeSelect>
                     <TextField required size='small' name='project_link' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Project Link" variant="outlined" />
                     <TextField required size='small' name='resume_link' sx={{ display: 'block', minWidth: '100%', marginTop: '10px' }} fullWidth color='success' id="outlined-basic" label="Resume Drive Link" variant="outlined" />
-                    <textarea required placeholder='Cover Letter' style={{ width: '100%', marginTop: '10px', paddingTop: '5px', paddingLeft: '10px' }} name="cover_letter" id="" rows="5"></textarea>
                     {
                         issubmitted !== null ?
                             <>

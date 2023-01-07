@@ -93,7 +93,6 @@ const AddTemplates = () => {
                                 live_preview,
                                 email: user?.email,
                                 dev_profile: user?.photoURL,
-                                verified: false,
                                 template_features: features,
                                 technologies: tech
                             }

@@ -12,17 +12,18 @@ export const ThemeDetailsHeaderText = styled.h2`
 
 export const ThemeDetailsSection = styled.section`
     margin: 3rem auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     gap: 2rem;
     @media ${(props) => props.theme.breakpoints.lg} {
-        display: block;
+        grid-template-columns: repeat(2, 1fr);
     }
     @media ${(props) => props.theme.breakpoints.md} {
-        display: block;
+        grid-template-columns: repeat(1, 1fr);
     }
     @media ${(props) => props.theme.breakpoints.sm} {
-        display: block;
+        grid-template-columns: repeat(1, 1fr);
     }
 `
 export const ThemePictureContainer = styled.div`
@@ -42,7 +43,7 @@ export const DevInformation = styled.div`
     padding: 10px;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 10px;
 `
 export const ThemeButtonContainer = styled.div`
     gap: .5rem;

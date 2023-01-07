@@ -179,3 +179,17 @@ export const LoaderSmall = styled.div`
   align-items: center;
 `
 
+export const TableMainContainer = styled.section`
+    width: 70%;
+    margin: 10px auto;
+    @media ${(props) => props.theme.breakpoints.lg} {
+        width: 80%;
+    }
+    @media ${(props) => props.theme.breakpoints.md} {
+        width: 90%;
+    }
+    @media ${(props) => props.theme.breakpoints.sm} {
+        width: 100%;
+    }
+`
+

@@ -12,9 +12,10 @@ const VerificationStatus = ({ email, refetch }) => {
             }
         })
             .then(res => {
+                refetch()
                 setIsVerified(res.data);
             })
-    }, [email])
+    }, [email, refetch])
 
     return (
         <>

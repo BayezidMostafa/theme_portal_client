@@ -3,9 +3,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 export default function OrderCard({ order, refetch }) {
     const {
@@ -14,7 +15,8 @@ export default function OrderCard({ order, refetch }) {
         title,
         thumb,
         price,
-        live_preview
+        live_preview,
+        paid
     } = order;
 
     const handleDeleteOrder = () => {
@@ -47,7 +49,12 @@ export default function OrderCard({ order, refetch }) {
                     Live Preview
                 </Typography>
                 <Button sx={{ marginBottom: '7px' }} fullWidth variant='contained' onClick={handleDeleteOrder} >Cancel</Button>
-                <Button fullWidth variant='contained' >Payment</Button>
+                {
+                    !paid ? <Box as={Link} to={`/dashboard/payment/${booking_id}`} ><Button fullWidth variant='contained' >Payment</Button></Box>
+                        :
+                        <Button disabled fullWidth variant='contained' >Paid</Button>
+                }
+
             </CardContent>
         </Card>
     );

@@ -6,6 +6,7 @@ import Dashboard from "../../Layout/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../Layout/Dashboard/MyOrders/MyOrders";
 import MyPurchase from "../../Layout/Dashboard/MyPurchase/MyPurchase";
 import MyTempLates from "../../Layout/Dashboard/MyTemplates/MyTempLates";
+import Payment from "../../Layout/Dashboard/Payment/Payment";
 import ReportedItems from "../../Layout/Dashboard/RepotedItems/ReportedItems";
 import RequestVerification from "../../Layout/Dashboard/RequestVerfication/RequestVerification";
 import VerifyRequest from "../../Layout/Dashboard/VerifyRequest/VerifyRequest";
@@ -102,6 +103,16 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/mypurchase',
                 element: <MyPurchase/>
+            },
+            {
+                path: '/dashboard/payment/:booking_id',
+                element: <Payment/>,
+                loader: ({params})=> fetch(`http://localhost:5000/order/${params.booking_id}`, {
+                    headers: {
+                        'content-type':'application/json',
+                        authorization: `Bearer ${localStorage.getItem('theme-token')}`
+                    }
+                })
             }
         ]
     }

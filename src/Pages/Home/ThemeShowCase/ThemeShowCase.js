@@ -30,7 +30,7 @@ const ThemeShowCase = () => {
 
     return (
         <>
-            <ShowCaseSection>
+            <ShowCaseSection id='showcase' >
                 <ShowCaseHeader>
                     Our Template is Just Ready to Use!
                 </ShowCaseHeader>

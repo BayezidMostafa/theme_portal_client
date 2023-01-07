@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useContext } from 'react';
+import { SyncLoader } from 'react-spinners';
 import { AuthContext } from '../../../Context/Authentication/Authentication';
+import { LoaderFull } from '../../../Styles/Index';
 import MyTemplateCard from './MyTemplateCard';
 import { MyThemeSection } from './MyTempLatesStyles';
 
@@ -21,7 +23,13 @@ const MyTempLates = () => {
         }
     })
 
-    console.log(mytemplate);
+    if (isLoading) {
+        return (
+            <LoaderFull>
+                <SyncLoader color="#2e5248" />
+            </LoaderFull>
+        )
+    }
 
     return (
         <MyThemeSection>

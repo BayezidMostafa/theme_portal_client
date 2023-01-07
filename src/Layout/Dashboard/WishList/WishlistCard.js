@@ -6,8 +6,12 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../../Context/Authentication/Authentication';
+import { LoaderFull } from '../../../Styles/Index';
+import { SyncLoader } from 'react-spinners';
 
 export default function WishlistCard({ wish, refetch }) {
+    const {loading, setLoading} = React.useContext(AuthContext)
     const {
         booking_id,
         userEmail,
@@ -17,6 +21,7 @@ export default function WishlistCard({ wish, refetch }) {
         live_preview
     } = wish;
     const handleDeleteWish = () => {
+        setLoading(true)
         axios.delete(`https://theme-portal-server.vercel.app/deletewish/${booking_id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
@@ -24,14 +29,19 @@ export default function WishlistCard({ wish, refetch }) {
         })
             .then(res => {
                 if (res.data.acknowledged) {
+                    setLoading(false)
                     refetch()
                     toast.success('Wish Canceled')
                 }
             })
+            .catch(err => {
+                setLoading(false)
+                console.error(err.message)
+            })
     }
 
     const handleBookTheme = () => {
-
+        setLoading(true);
         const order = {
             booking_id,
             userEmail,
@@ -56,9 +66,26 @@ export default function WishlistCard({ wish, refetch }) {
                     .then(res => {
                         if (res.data.acknowledged) {
                             refetch()
+                            setLoading(false)
                         }
                     })
+                    .catch(err => {
+                        setLoading(false)
+                        console.error(err.message)
+                    })
             })
+            .catch(err => {
+                console.error(err.message);
+                setLoading(false)
+            })
+    }
+
+    if(loading){
+        return(
+            <LoaderFull>
+                <SyncLoader color="#2e5248" />
+            </LoaderFull>
+        )
     }
 
     return (

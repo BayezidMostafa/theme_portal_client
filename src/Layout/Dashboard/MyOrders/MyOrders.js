@@ -1,14 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useContext } from 'react';
+import { SyncLoader } from 'react-spinners';
 import { AuthContext } from '../../../Context/Authentication/Authentication';
+import { LoaderFull } from '../../../Styles/Index';
 import { OrderSectionContainer } from './MyOrdersStyle';
 import OrderCard from './OrderCard';
 
 const MyOrders = () => {
 
     const { user } = useContext(AuthContext);
-    const { data: orders = [], refetch } = useQuery({
+    const { data: orders = [], refetch, isLoading } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
             const res = await axios.get(`https://theme-portal-server.vercel.app/orders/${user?.email}`, {
@@ -19,7 +21,15 @@ const MyOrders = () => {
             return res.data;
         }
     })
-    console.log(orders);
+
+    if (isLoading) {
+        return (
+            <LoaderFull>
+                <SyncLoader color="#2e5248" />
+            </LoaderFull>
+        )
+    }
+
     return (
         <OrderSectionContainer>
             {

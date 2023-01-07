@@ -9,14 +9,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
-import { TableMainContainer } from '../../../Styles/Index';
+import { LoaderFull, TableMainContainer } from '../../../Styles/Index';
 import { toast } from 'react-hot-toast';
+import { SyncLoader } from 'react-spinners';
 
 const AllClients = () => {
 
-    const {data: clients = [], refetch} = useQuery({
+    const { data: clients = [], refetch, isLoading } = useQuery({
         queryKey: ['clients'],
-        queryFn: async() => {
+        queryFn: async () => {
             const res = await axios.get(`https://theme-portal-server.vercel.app/allclients`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('theme-token')}`
@@ -35,14 +36,20 @@ const AllClients = () => {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }
         })
-        .then(res => {
-            refetch();
-            toast.success('Client Deleted Successfully')
-        })
+            .then(res => {
+                refetch();
+                toast.success('Client Deleted Successfully')
+            })
 
     }
 
-
+    if (isLoading) {
+        return (
+            <LoaderFull>
+                <SyncLoader color="#2e5248" />
+            </LoaderFull>
+        )
+    }
     return (
         <TableMainContainer>
             <TableContainer component={Paper}>
@@ -78,7 +85,7 @@ const AllClients = () => {
                                             </>
                                     }
                                 </TableCell>
-                                <TableCell sx={{textAlign: 'right'}} >
+                                <TableCell sx={{ textAlign: 'right' }} >
                                     <Button onClick={() => handleClientDelete(client._id)} color='warning' variant='contained' >Delete</Button>
                                 </TableCell>
                             </TableRow>

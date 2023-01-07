@@ -5,11 +5,16 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea } from '@mui/material';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../../Context/Authentication/Authentication';
+import { LoaderFull } from '../../../Styles/Index';
+import { SyncLoader } from 'react-spinners';
 
 export default function RequestCard({ request, refetch }) {
-
+    const {loading, setLoading} = React.useContext(AuthContext)
     const { displayName, email, photoURL, project_link, resume_link, role } = request;
     const handleAccept = () => {
+        setLoading(true)
         axios.put(`https://theme-portal-server.vercel.app/acceptingverification/${email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
@@ -23,25 +28,46 @@ export default function RequestCard({ request, refetch }) {
                         }
                     })
                         .then(res => {
+                            setLoading(false)
+                            toast.success('Verification Process Done')
                             refetch()
                             console.log(res.data);
                         })
+                        .catch(err => {
+                            setLoading(false)
+                        })
                 }
+            })
+            .catch(err => {
+                setLoading(false)
             })
     }
 
     const handleReject = () => {
+        setLoading(true)
         axios.delete(`https://theme-portal-server.vercel.app/reject/${email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }
         })
         .then(res => {
+            setLoading(false)
+            toast.error('Verification Rejected')
             refetch()
             console.log(res.data);
         })
+        .catch(err => {
+            setLoading(false)
+        })
     }
 
+    if(loading){
+        return(
+            <LoaderFull>
+                <SyncLoader color="#2e5248" />
+            </LoaderFull>
+        )
+    }
 
 
     console.log(email);

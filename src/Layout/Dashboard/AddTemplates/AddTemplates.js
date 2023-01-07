@@ -52,9 +52,8 @@ const AddTemplates = () => {
     const [tech, setTech] = React.useState([]);
 
     const handleOnSubmit = event => {
-
-        event.preventDefault()
         setLoading(true)
+        event.preventDefault()
         const form = event.target;
         const title = form.title.value;
         const image_1 = form.thumb.files[0];

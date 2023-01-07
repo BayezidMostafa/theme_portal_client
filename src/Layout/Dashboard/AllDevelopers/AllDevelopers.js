@@ -17,7 +17,7 @@ const AllDevelopers = () => {
     const { data: developers = [], refetch } = useQuery({
         queryKey: ['developers'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/developers`, {
+            const res = await axios.get(`https://theme-portal-server.vercel.app/developers`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('theme-token')}`
                 }
@@ -27,7 +27,7 @@ const AllDevelopers = () => {
     })
 
     const handleDeveloperDelete = (id) => {
-        axios.delete(`http://localhost:5000/deletedeveloper/${id}`, {
+        axios.delete(`https://theme-portal-server.vercel.app/deletedeveloper/${id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }

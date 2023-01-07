@@ -57,7 +57,7 @@ export const router = createBrowserRouter([
             {
                 path: '/themes/:id',
                 element: <PrivateRoute><ThemeDetails /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/themes/${params.id}`)
+                loader: ({ params }) => fetch(`https://theme-portal-server.vercel.app/themes/${params.id}`)
 
             },
         ]
@@ -110,7 +110,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:booking_id',
                 element: <Payment/>,
-                loader: ({params})=> fetch(`http://localhost:5000/order/${params.booking_id}`, {
+                loader: ({params})=> fetch(`https://theme-portal-server.vercel.app/order/${params.booking_id}`, {
                     headers: {
                         'content-type':'application/json',
                         authorization: `Bearer ${localStorage.getItem('theme-token')}`

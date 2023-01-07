@@ -45,7 +45,7 @@ const Signin = () => {
                         email: user?.email,
                         role: 'client'
                     }
-                    fetch('http://localhost:5000/users', {
+                    fetch('https://theme-portal-server.vercel.app/users', {
                         method: "PUT",
                         headers: {
                             'content-type': 'application/json',

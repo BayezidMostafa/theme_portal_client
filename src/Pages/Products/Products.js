@@ -6,7 +6,7 @@ const Products = () => {
     const {data: themes = [], isLoading} = useQuery({
         queryKey: ['themes'],
         queryFn: async() => {
-            const res = await fetch('http://localhost:5000/themes')
+            const res = await fetch('https://theme-portal-server.vercel.app/themes')
             return res.data
         }
     })

@@ -16,7 +16,7 @@ export default function MyTemplateCard({ template, refetch }) {
         setLoading(true)
         const confirmation = window.confirm('Do you want to delete your theme?')
         if(confirmation){
-            axios.delete(`http://localhost:5000/deletemytheme/${_id}`, {
+            axios.delete(`https://theme-portal-server.vercel.app/deletemytheme/${_id}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('theme-token')}`
                 }

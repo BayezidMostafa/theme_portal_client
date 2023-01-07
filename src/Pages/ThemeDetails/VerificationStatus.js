@@ -6,7 +6,7 @@ import { Tooltip } from '@mui/material';
 const VerificationStatus = ({ email, refetch }) => {
     const [isVerified, setIsVerified] = useState(null)
     useEffect(() => {
-        axios.get(`http://localhost:5000/users/${email}`, {
+        axios.get(`https://theme-portal-server.vercel.app/users/${email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }

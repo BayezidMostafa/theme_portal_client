@@ -9,7 +9,7 @@ const VerifyRequest = () => {
     const {data: requested = [], refetch } = useQuery({
         queryKey: ['requested'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/requested', {
+            const res = await axios.get('https://theme-portal-server.vercel.app/requested', {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('theme-token')}`
                 }

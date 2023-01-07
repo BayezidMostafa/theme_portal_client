@@ -17,7 +17,7 @@ const AllClients = () => {
     const {data: clients = [], refetch} = useQuery({
         queryKey: ['clients'],
         queryFn: async() => {
-            const res = await axios.get(`http://localhost:5000/allclients`, {
+            const res = await axios.get(`https://theme-portal-server.vercel.app/allclients`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('theme-token')}`
                 }
@@ -30,7 +30,7 @@ const AllClients = () => {
 
     const handleClientDelete = (id) => {
         console.log(id);
-        axios.delete(`http://localhost:5000/deleteclient/${id}`, {
+        axios.delete(`https://theme-portal-server.vercel.app/deleteclient/${id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }

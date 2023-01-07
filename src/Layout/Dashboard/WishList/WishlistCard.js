@@ -17,7 +17,7 @@ export default function WishlistCard({ wish, refetch }) {
         live_preview
     } = wish;
     const handleDeleteWish = () => {
-        axios.delete(`http://localhost:5000/deletewish/${booking_id}`, {
+        axios.delete(`https://theme-portal-server.vercel.app/deletewish/${booking_id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }
@@ -41,14 +41,14 @@ export default function WishlistCard({ wish, refetch }) {
             live_preview
         }
 
-        axios.put('http://localhost:5000/order', order)
+        axios.put('https://theme-portal-server.vercel.app/order', order)
             .then(res => {
                 if (res.data.upsertedCount !== 1) {
                     return toast.error('Already Added')
                 }
                 refetch()
                 toast.success('Successfully Ordered')
-                axios.delete(`http://localhost:5000/deletewish/${booking_id}`, {
+                axios.delete(`https://theme-portal-server.vercel.app/deletewish/${booking_id}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('theme-token')}`
                     }

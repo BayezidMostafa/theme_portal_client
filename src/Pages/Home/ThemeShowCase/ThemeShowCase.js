@@ -14,7 +14,7 @@ const ThemeShowCase = () => {
     const { data: themes = [], isLoading, refetch } = useQuery({
         queryKey: ['themes'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/themes?size=${size}`)
+            const res = await axios.get(`https://theme-portal-server.vercel.app/themes?size=${size}`)
             return res.data
 
         }

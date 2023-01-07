@@ -19,7 +19,7 @@ const CheckOutForm = ({ themeInfo }) => {
     console.log(booking_id);
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://theme-portal-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const CheckOutForm = ({ themeInfo }) => {
                 title,
                 customer_Name: user?.displayName
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://theme-portal-server.vercel.app/payments', {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',

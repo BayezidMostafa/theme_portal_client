@@ -20,7 +20,7 @@ export default function OrderCard({ order, refetch }) {
     } = order;
 
     const handleDeleteOrder = () => {
-        axios.delete(`http://localhost:5000/deleteorder/${booking_id}`, {
+        axios.delete(`https://theme-portal-server.vercel.app/deleteorder/${booking_id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }

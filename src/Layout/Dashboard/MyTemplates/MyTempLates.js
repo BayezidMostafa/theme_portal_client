@@ -12,7 +12,7 @@ const MyTempLates = () => {
     const { data: mytemplate = [], isLoading, refetch } = useQuery({
         queryKey: ['mytemplate'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/devtheme/${user?.email}`, {
+            const res = await axios.get(`https://theme-portal-server.vercel.app/devtheme/${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('theme-token')}`
                 }

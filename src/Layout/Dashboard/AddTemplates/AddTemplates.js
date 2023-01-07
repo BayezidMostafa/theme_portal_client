@@ -96,7 +96,7 @@ const AddTemplates = () => {
                                 template_features: features,
                                 technologies: tech
                             }
-                            axios.put('http://localhost:5000/theme', theme, {
+                            axios.put('https://theme-portal-server.vercel.app/theme', theme, {
                                 headers: {
                                     authorization: `Bearer ${localStorage.getItem('theme-token')}`
                                 }

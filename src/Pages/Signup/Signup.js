@@ -60,7 +60,7 @@ const Signup = () => {
                                 console.error(err.message);
                                 setLoading(false)
                             })
-                        axios.put('http://localhost:5000/users', userInfo, {
+                        axios.put('https://theme-portal-server.vercel.app/users', userInfo, {
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
                             }
@@ -93,7 +93,7 @@ const Signup = () => {
                     email: user?.email,
                     role: 'client'
                 }
-                axios.put('http://localhost:5000/users', userInfo, {
+                axios.put('https://theme-portal-server.vercel.app/users', userInfo, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('theme-token')}`
                     }

@@ -17,7 +17,7 @@ const RequestVerification = () => {
     const { data: issubmitted = [] } = useQuery({
         queryKey: ['incomingdata'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/issubmitted/${user?.email}`, {
+            const res = await axios.get(`https://theme-portal-server.vercel.app/issubmitted/${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('theme-token')}`
                 }
@@ -50,7 +50,7 @@ const RequestVerification = () => {
             resume_link,
         }
         console.log(devProfile);
-        axios.put('http://localhost:5000/request', devProfile, {
+        axios.put('https://theme-portal-server.vercel.app/request', devProfile, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }

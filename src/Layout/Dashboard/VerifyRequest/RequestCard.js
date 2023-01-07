@@ -6,23 +6,24 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea } from '@mui/material';
 import axios from 'axios';
 
-export default function RequestCard({ request, refecth }) {
+export default function RequestCard({ request, refetch }) {
 
     const { displayName, email, photoURL, project_link, resume_link, role } = request;
     const handleAccept = () => {
-        axios.put(`http://localhost:5000/acceptingverification/${email}`, {
+        axios.put(`https://theme-portal-server.vercel.app/acceptingverification/${email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }
         })
             .then(res => {
                 if (res.data) {
-                    axios.delete(`http://localhost:5000/deleterequest/${email}`, {
+                    axios.delete(`https://theme-portal-server.vercel.app/deleterequest/${email}`, {
                         headers: {
                             authorization: `Bearer ${localStorage.getItem('theme-token')}`
                         }
                     })
                         .then(res => {
+                            refetch()
                             console.log(res.data);
                         })
                 }
@@ -30,12 +31,13 @@ export default function RequestCard({ request, refecth }) {
     }
 
     const handleReject = () => {
-        axios.delete(`http://localhost:5000/reject/${email}`, {
+        axios.delete(`https://theme-portal-server.vercel.app/reject/${email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('theme-token')}`
             }
         })
         .then(res => {
+            refetch()
             console.log(res.data);
         })
     }

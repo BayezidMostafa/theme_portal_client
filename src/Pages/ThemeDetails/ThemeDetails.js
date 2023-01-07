@@ -19,7 +19,7 @@ const ThemeDetails = () => {
     const { data: orderStatus = [], refetch } = useQuery({
         queryKey: ['orderStatus'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/order/${_id}`, {
+            const res = await axios.get(`https://theme-portal-server.vercel.app/order/${_id}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('theme-token')}`
                 }
@@ -47,7 +47,7 @@ const ThemeDetails = () => {
             price,
             live_preview
         }
-        axios.put('http://localhost:5000/order', order)
+        axios.put('https://theme-portal-server.vercel.app/order', order)
             .then(res => {
                 if (res.data.upsertedCount !== 1) {
                     return toast.error('Already Added')
@@ -65,7 +65,7 @@ const ThemeDetails = () => {
             price,
             live_preview
         }
-        axios.put('http://localhost:5000/wishlist', wishlist)
+        axios.put('https://theme-portal-server.vercel.app/wishlist', wishlist)
             .then(res => {
                 console.log(res);
                 if (res.data.upsertedCount !== 1) {

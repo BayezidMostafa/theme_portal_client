@@ -25,7 +25,7 @@ function Dashboard(props) {
   const { data: userData = [], isLoading } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/users/${user?.email}`, {
+      const res = await axios.get(`https://theme-portal-server.vercel.app/users/${user?.email}`, {
         headers: {
           authorization: `bearer ${localStorage.getItem('theme-token')}`
         }
